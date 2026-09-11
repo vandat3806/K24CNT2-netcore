@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" role="img" aria-labelledby="title">
+  <title id="title">Nguyễn Văn Đạt</title>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5b5bd6"/><stop offset="1" stop-color="#302f74"/></linearGradient></defs>
+  <rect width="600" height="500" rx="36" fill="url(#g)"/>
+  <circle cx="300" cy="185" r="92" fill="#f9c784"/>
+  <path d="M125 500c16-130 84-199 175-199s159 69 175 199" fill="#fff" opacity=".94"/>
+  <circle cx="300" cy="250" r="210" fill="none" stroke="#fff" stroke-width="4" opacity=".12"/>
+  <text x="300" y="448" text-anchor="middle" fill="#302f74" font-family="Arial,sans-serif" font-size="48" font-weight="800">NVD</text>
+</svg>

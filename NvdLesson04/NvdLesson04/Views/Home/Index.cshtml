@@ -1,0 +1,77 @@
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="eyebrow">ASP.NET CORE MVC · CONTROLLER LAB</span>
+            <h1>Tạo controller và truyền dữ liệu qua View</h1>
+            <p>
+                Bài thực hành hoàn chỉnh với Account, Product, Category, ViewBag,
+                route tiếng Việt, lọc theo danh mục và xem chi tiết theo id.
+            </p>
+            <div class="hero-actions">
+                <a class="btn btn-light btn-lg" asp-route="product">Xem sản phẩm</a>
+                <a class="btn btn-outline-light btn-lg" asp-route="account">Xem tài khoản</a>
+            </div>
+        </div>
+        <aside class="student-card">
+            <span class="student-card-label">BÀI LÀM CỦA SINH VIÊN</span>
+            <div class="student-avatar">NVD</div>
+            <h2>@ViewBag.StudentName</h2>
+            <p>MSV: @ViewData["StudentId"]</p>
+            <div class="student-tags">
+                <span>K24CNT2</span>
+                <span>Lesson04</span>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<section class="container content-section">
+    <div class="section-heading">
+        <span class="eyebrow dark">NỘI DUNG ĐÃ HOÀN THÀNH</span>
+        <h2>Hai phần của bài lab</h2>
+        <p>Mỗi phần có đầy đủ model, controller, action, view và route tương ứng.</p>
+    </div>
+
+    <div class="lesson-grid">
+        <article class="lesson-card account-theme">
+            <span class="lesson-number">01</span>
+            <h3>Account &amp; Profile</h3>
+            <p>Truyền danh sách đối tượng bằng ViewBag và mở đúng hồ sơ theo id.</p>
+            <ul>
+                <li>Model Account đủ 9 thuộc tính</li>
+                <li>Named route <code>account</code></li>
+                <li>Named route <code>profile</code></li>
+            </ul>
+            <a asp-route="account">Mở danh sách tài khoản →</a>
+        </article>
+
+        <article class="lesson-card product-theme">
+            <span class="lesson-number">02</span>
+            <h3>Product &amp; Category</h3>
+            <p>Hiển thị 10 sản phẩm, lọc bằng danh mục bên trái và xem đầy đủ thông tin.</p>
+            <ul>
+                <li>Model Category và Product</li>
+                <li>Route mới <code>/san-pham</code></li>
+                <li>Chi tiết sản phẩm theo id</li>
+            </ul>
+            <a asp-route="product">Mở trang sản phẩm →</a>
+        </article>
+    </div>
+
+    <div class="route-panel">
+        <div>
+            <span class="eyebrow dark">ROUTE ĐÃ CẤU HÌNH</span>
+            <h2>Đường dẫn ngắn, dễ đọc</h2>
+        </div>
+        <div class="route-list">
+            <code>/tai-khoan</code>
+            <code>/ho-so-cua-toi/1</code>
+            <code>/san-pham</code>
+            <code>/san-pham/chi-tiet/1</code>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,47 @@
+@model Product
+@{
+    ViewData["Title"] = Model.Name;
+    string categoryName = ViewBag.CategoryName as string ?? "Chưa xác định";
+    int discount = Model.Price > 0
+        ? (int)Math.Round((1 - Model.SalePrice / Model.Price) * 100)
+        : 0;
+}
+
+<section class="container content-section">
+    <div class="breadcrumb-row">
+        <a asp-route="product">Sản phẩm</a>
+        <span>/</span>
+        <strong>@Model.Name</strong>
+    </div>
+
+    <article class="product-detail">
+        <div class="product-detail-image">
+            <img src="@Model.Image" alt="@Model.Name" />
+            <span class="discount-large">Tiết kiệm @discount%</span>
+        </div>
+        <div class="product-detail-body">
+            <span class="eyebrow dark">CHI TIẾT SẢN PHẨM · ID @Model.Id</span>
+            <h1>@Model.Name</h1>
+            <span class="@(Model.Status ? "detail-status available" : "detail-status unavailable")">
+                @(Model.Status ? "Còn hàng" : "Tạm hết hàng")
+            </span>
+            <p class="detail-description">@Model.Description</p>
+
+            <div class="detail-price">
+                <strong>@Model.SalePrice.ToString("N0") đ</strong>
+                <del>@Model.Price.ToString("N0") đ</del>
+            </div>
+
+            <dl class="product-specs">
+                <div><dt>Mã sản phẩm</dt><dd>NVD-P@Model.Id.ToString("D3")</dd></div>
+                <div><dt>Danh mục</dt><dd>@categoryName</dd></div>
+                <div><dt>CategoryId</dt><dd>@Model.CategoryId</dd></div>
+                <div><dt>Ngày tạo</dt><dd>@Model.CreatedAt.ToString("dd/MM/yyyy")</dd></div>
+                <div><dt>Trạng thái</dt><dd>@(Model.Status ? "Đang kinh doanh" : "Ngừng kinh doanh")</dd></div>
+                <div><dt>Route</dt><dd><code>/san-pham/chi-tiet/@Model.Id</code></dd></div>
+            </dl>
+
+            <a class="btn btn-outline-primary" asp-route="product">← Quay lại sản phẩm</a>
+        </div>
+    </article>
+</section>

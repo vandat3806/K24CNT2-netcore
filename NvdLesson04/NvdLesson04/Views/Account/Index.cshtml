@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Danh sách tài khoản";
+    IReadOnlyList<Account> accounts = ViewBag.Accounts as IReadOnlyList<Account> ?? Array.Empty<Account>();
+}
+
+<section class="page-hero compact">
+    <div class="container">
+        <span class="eyebrow">BÀI 1 · VIEWBAG</span>
+        <h1>Danh sách tài khoản</h1>
+        <p>Controller truyền <code>List&lt;Account&gt;</code> sang View bằng <code>ViewBag.Accounts</code>.</p>
+        <div class="student-line">
+            <span>Người thực hiện</span>
+            <strong>@ViewData["StudentName"] · 2410900021</strong>
+        </div>
+    </div>
+</section>
+
+<section class="container content-section account-section">
+    <div class="account-grid">
+        @foreach (Account account in accounts)
+        {
+            <article class="account-card">
+                <img src="@account.Avatar" alt="Ảnh đại diện @account.Name" />
+                <div class="account-card-body">
+                    <span class="id-badge">ID @account.Id</span>
+                    <h2>@account.Name</h2>
+                    <p>@account.Bio</p>
+                    <div class="account-meta">
+                        <span>@account.Email</span>
+                        <span>@account.Address</span>
+                    </div>
+                    <a class="btn btn-primary w-100"
+                       asp-route="profile"
+                       asp-route-id="@account.Id">Xem hồ sơ</a>
+                </div>
+            </article>
+        }
+    </div>
+</section>

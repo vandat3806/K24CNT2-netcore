@@ -1,0 +1,35 @@
+@{
+    Account account = (Account)ViewBag.Account;
+    ViewData["Title"] = $"Hồ sơ {account.Name}";
+}
+
+<section class="container content-section">
+    <div class="breadcrumb-row">
+        <a asp-route="account">Tài khoản</a>
+        <span>/</span>
+        <strong>Hồ sơ #@account.Id</strong>
+    </div>
+
+    <article class="profile-card">
+        <div class="profile-side">
+            <img src="@account.Avatar" alt="Ảnh đại diện @account.Name" />
+            <span class="status-dot"><i></i> Hồ sơ đang hoạt động</span>
+        </div>
+        <div class="profile-body">
+            <span class="eyebrow dark">YOUR PROFILE · ID @account.Id</span>
+            <h1>@account.Name</h1>
+            <p class="profile-bio">@account.Bio</p>
+
+            <dl class="profile-details">
+                <div><dt>Email</dt><dd>@account.Email</dd></div>
+                <div><dt>Số điện thoại</dt><dd>@account.Phone</dd></div>
+                <div><dt>Địa chỉ</dt><dd>@account.Address</dd></div>
+                <div><dt>Giới tính</dt><dd>@account.GenderName</dd></div>
+                <div><dt>Ngày sinh</dt><dd>@account.Birthday.ToString("dd/MM/yyyy")</dd></div>
+                <div><dt>Route hiện tại</dt><dd><code>/ho-so-cua-toi/@account.Id</code></dd></div>
+            </dl>
+
+            <a class="btn btn-outline-primary" asp-route="account">← Quay lại danh sách</a>
+        </div>
+    </article>
+</section>
