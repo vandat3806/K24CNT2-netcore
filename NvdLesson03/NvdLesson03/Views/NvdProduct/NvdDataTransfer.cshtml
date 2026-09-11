@@ -1,0 +1,57 @@
+﻿@model NvdProduct
+@{
+    ViewData["Title"] = "4 cách truyền dữ liệu";
+    NvdProduct? viewDataProduct = ViewData["NvdProduct"] as NvdProduct;
+    string tempMessage = TempData.Peek("NvdMessage")?.ToString() ?? "Không có dữ liệu TempData.";
+}
+
+<div class="page-heading heading-with-action">
+    <div>
+        <span class="eyebrow eyebrow-dark">CONTROLLER → VIEW</span>
+        <h1>4 cách truyền dữ liệu</h1>
+        <p>Minh họa bốn cách truyền dữ liệu trong cùng một Razor View.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="NvdSetTempData">Thử TempData + Redirect</a>
+</div>
+
+<div class="transfer-grid">
+    <article class="transfer-card transfer-blue">
+        <span class="method-tag">CÁCH 1</span>
+        <h2>ViewBag</h2>
+        <code>ViewBag.NvdStudentName</code>
+        <p>@ViewBag.NvdStudentName</p>
+        <small>Thuộc tính động, không cần ép kiểu.</small>
+    </article>
+
+    <article class="transfer-card transfer-violet">
+        <span class="method-tag">CÁCH 2</span>
+        <h2>ViewData</h2>
+        <code>ViewData["NvdStudentId"]</code>
+        <p>@ViewData["NvdStudentId"]</p>
+        @if (viewDataProduct is not null)
+        {
+            <small>@viewDataProduct.NvdProductId · @viewDataProduct.NvdProductName</small>
+        }
+    </article>
+
+    <article class="transfer-card transfer-orange">
+        <span class="method-tag">CÁCH 3</span>
+        <h2>TempData</h2>
+        <code>TempData["NvdMessage"]</code>
+        <p class="transfer-message">@tempMessage</p>
+        <small>Dữ liệu có thể tồn tại qua request sau khi Redirect.</small>
+    </article>
+
+    <article class="transfer-card transfer-green">
+        <span class="method-tag">CÁCH 4</span>
+        <h2>Strongly typed Model</h2>
+        <code>@@model NvdProduct</code>
+        <p>@Model.NvdProductName</p>
+        <small>@Model.NvdProductId · @Model.NvdPrice.ToString("N0") đ</small>
+    </article>
+</div>
+
+<div class="note-panel mt-4">
+    <strong>Ghi nhớ:</strong> Model phù hợp cho dữ liệu chính và an toàn kiểu;
+    ViewBag/ViewData dùng cho dữ liệu phụ; TempData phù hợp thông báo sau chuyển hướng.
+</div>

@@ -1,0 +1,74 @@
+﻿@model NvdStudentInfo
+@{
+    ViewData["Title"] = "Lesson03 - Controller";
+}
+
+<section class="hero-section">
+    <div class="hero-copy">
+        <span class="eyebrow">ASP.NET CORE MVC · LESSON 03</span>
+        <h1>Controller điều phối<br />mọi request</h1>
+        <p class="hero-lead">
+            Bài thực hành tạo Controller, Action, Razor View, truyền dữ liệu,
+            trả về nhiều loại ActionResult và tổ chức Routes trong ASP.NET Core MVC.
+        </p>
+        <div class="hero-actions">
+            <a class="btn btn-light btn-lg" href="/all">Xem danh sách sản phẩm</a>
+            <a class="btn btn-outline-light btn-lg" asp-controller="NvdProduct" asp-action="NvdDataTransfer">Xem 4 cách truyền dữ liệu</a>
+        </div>
+    </div>
+    <div class="hero-student-card">
+        <span class="student-label">SINH VIÊN THỰC HIỆN</span>
+        <div class="avatar">NVD</div>
+        <h2>@Model.FullName</h2>
+        <p class="student-id">MSV: @Model.StudentId</p>
+        <div class="student-meta">
+            <span>@Model.ClassName</span>
+            <span>.NET 8.0</span>
+        </div>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="section-heading">
+        <span class="eyebrow eyebrow-dark">NỘI DUNG BÀI THỰC HÀNH</span>
+        <h2>Đầy đủ các phần của Lesson03</h2>
+        <p>Mỗi nội dung đều có Action và trang chạy minh họa trực tiếp.</p>
+    </div>
+
+    <div class="topic-grid">
+        <article class="topic-card">
+            <span class="topic-number">01</span>
+            <h3>Controller</h3>
+            <p>Tạo các Controller kế thừa <code>Controller</code> để tiếp nhận và xử lý request.</p>
+        </article>
+        <article class="topic-card">
+            <span class="topic-number">02</span>
+            <h3>Actions</h3>
+            <p>Các public method nhận tham số từ URL, route value và query string.</p>
+        </article>
+        <article class="topic-card topic-card-featured">
+            <span class="topic-number">03</span>
+            <h3>Product + View</h3>
+            <p>Danh sách 10 sản phẩm truyền từ Controller sang Razor View.</p>
+            <a href="/all">Mở danh sách →</a>
+        </article>
+        <article class="topic-card">
+            <span class="topic-number">04</span>
+            <h3>Truyền dữ liệu</h3>
+            <p>Đủ ViewBag, ViewData, TempData và strongly typed Model.</p>
+            <a asp-controller="NvdProduct" asp-action="NvdDataTransfer">Mở ví dụ →</a>
+        </article>
+        <article class="topic-card">
+            <span class="topic-number">05</span>
+            <h3>ActionResult</h3>
+            <p>View, Content, JSON, Redirect, File, StatusCode, NotFound, PartialView và Empty.</p>
+            <a asp-controller="NvdActionResult" asp-action="Index">Mở ví dụ →</a>
+        </article>
+        <article class="topic-card">
+            <span class="topic-number">06</span>
+            <h3>Routes</h3>
+            <p>Conventional route, attribute route, tham số, constraint và named route.</p>
+            <a asp-controller="NvdRoute" asp-action="Index">Mở ví dụ →</a>
+        </article>
+    </div>
+</section>

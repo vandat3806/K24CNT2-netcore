@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = ViewData["RouteTitle"]?.ToString() ?? "Kết quả Route";
+}
+
+<div class="route-result">
+    <span class="eyebrow eyebrow-dark">ROUTE ĐÃ KHỚP THÀNH CÔNG</span>
+    <h1>@ViewData["RouteTitle"]</h1>
+    <p class="route-value">@ViewData["RouteValue"]</p>
+    <div class="matched-route">
+        <span>Mẫu route</span>
+        <code>@ViewData["CurrentRoute"]</code>
+    </div>
+    <a class="btn btn-primary mt-4" asp-action="Index">Về danh sách Routes</a>
+</div>

@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+    IReadOnlyList<NvdProduct> products =
+        ViewData["NvdProducts"] as IReadOnlyList<NvdProduct> ?? Array.Empty<NvdProduct>();
+}
+
+<div class="page-heading heading-with-action">
+    <div>
+        <span class="eyebrow eyebrow-dark">CONTROLLER + ACTION + VIEWDATA</span>
+        <h1>Danh sách sản phẩm</h1>
+        <p>Action <code>NvdGetAllProduct</code> truyền collection sang View bằng <code>ViewData</code>.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="NvdDataTransfer">Xem 4 cách truyền dữ liệu</a>
+</div>
+
+<div class="student-strip">
+    <span>Bài làm: <strong>@ViewBag.NvdStudentName</strong></span>
+    <span>Mã sinh viên: <strong>2410900021</strong></span>
+    <span>Tổng sản phẩm: <strong>@products.Count</strong></span>
+</div>
+
+<div class="table-responsive data-table-wrap">
+    <table class="table align-middle mb-0">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Năm</th>
+                <th class="text-end">Giá</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int index = 0; index < products.Count; index++)
+            {
+                NvdProduct product = products[index];
+                <tr>
+                    <td>@(index + 1)</td>
+                    <td><span class="code-pill">@product.NvdProductId</span></td>
+                    <td class="fw-semibold">@product.NvdProductName</td>
+                    <td>@product.NvdYearRelease</td>
+                    <td class="text-end">@product.NvdPrice.ToString("N0") đ</td>
+                    <td class="text-end">
+                        <a class="btn btn-sm btn-outline-primary"
+                           asp-action="NvdDetails"
+                           asp-route-id="@product.NvdProductId">Chi tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="6">Tổng số sản phẩm: @products.Count</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

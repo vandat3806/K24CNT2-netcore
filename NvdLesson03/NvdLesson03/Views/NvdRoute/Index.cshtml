@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Tìm hiểu Routes";
+}
+
+<div class="page-heading">
+    <span class="eyebrow eyebrow-dark">URL → CONTROLLER → ACTION</span>
+    <h1>Tìm hiểu về Routes</h1>
+    <p>Project kết hợp conventional routing và attribute routing.</p>
+</div>
+
+<div class="route-grid">
+    <article class="route-card">
+        <span class="route-kind">CONVENTIONAL</span>
+        <h2>Route mặc định</h2>
+        <code>/NvdProduct/NvdDetails/NVD-MB-001</code>
+        <p>Mẫu: <code>{controller}/{action}/{id?}</code>.</p>
+        <a href="/NvdProduct/NvdDetails/NVD-MB-001">Chạy thử →</a>
+    </article>
+    <article class="route-card">
+        <span class="route-kind">CUSTOM CONVENTIONAL</span>
+        <h2>Route thân thiện</h2>
+        <code>/san-pham/NVD-MB-001</code>
+        <p>Được khai báo trong <code>Program.cs</code>.</p>
+        <a href="/san-pham/NVD-MB-001">Chạy thử →</a>
+    </article>
+    <article class="route-card">
+        <span class="route-kind">ATTRIBUTE</span>
+        <h2>Tham số tùy chọn</h2>
+        <code>/dinh-tuyen/xin-chao/{name?}</code>
+        <p>Giá trị từ URL được binding vào tham số Action.</p>
+        <a asp-action="Greeting" asp-route-name="Nguyen-Van-Dat">Chạy thử →</a>
+    </article>
+    <article class="route-card">
+        <span class="route-kind">CONSTRAINT</span>
+        <h2>Ràng buộc tham số</h2>
+        <code>{lesson:int:min(1):max(99)}</code>
+        <p>Chỉ chấp nhận số nguyên từ 1 đến 99.</p>
+        <a asp-action="Lesson" asp-route-lesson="3">Chạy thử →</a>
+    </article>
+    <article class="route-card">
+        <span class="route-kind">NAMED ROUTE</span>
+        <h2>Tạo URL theo tên</h2>
+        <code>nvd-student-profile</code>
+        <p>URL sinh ra: <code>@ViewBag.NamedRouteUrl</code></p>
+        <a href="@ViewBag.NamedRouteUrl">Chạy thử →</a>
+    </article>
+    <article class="route-card">
+        <span class="route-kind">QUERY STRING</span>
+        <h2>Tham số truy vấn</h2>
+        <code>?keyword=Controller&amp;page=1</code>
+        <p>Query string được binding vào tham số Action.</p>
+        <a asp-action="Search" asp-route-keyword="Controller" asp-route-page="1">Chạy thử →</a>
+    </article>
+</div>
+
+<div class="note-panel mt-4">
+    <strong>Hai attribute route từ bài mẫu:</strong>
+    <a href="/danh-sach-san-pham"><code>/danh-sach-san-pham</code></a> trả JSON và
+    <a href="/all"><code>/all</code></a> trả Razor View.
+</div>

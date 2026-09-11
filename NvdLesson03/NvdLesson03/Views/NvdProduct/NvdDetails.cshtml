@@ -1,0 +1,33 @@
+﻿@model NvdProduct
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+}
+
+<div class="page-heading">
+    <span class="eyebrow eyebrow-dark">ACTION NHẬN ROUTE PARAMETER</span>
+    <h1>Chi tiết sản phẩm</h1>
+    <p>URL thân thiện: <code>/san-pham/@Model.NvdProductId</code>.</p>
+</div>
+
+<article class="detail-card">
+    <div class="product-icon">03</div>
+    <div class="detail-body">
+        <span class="code-pill">@Model.NvdProductId</span>
+        <h2>@Model.NvdProductName</h2>
+        <div class="detail-grid">
+            <div>
+                <span>Năm phát hành</span>
+                <strong>@Model.NvdYearRelease</strong>
+            </div>
+            <div>
+                <span>Đơn giá</span>
+                <strong>@Model.NvdPrice.ToString("N0") đ</strong>
+            </div>
+        </div>
+    </div>
+</article>
+
+<div class="mt-4 d-flex gap-2 flex-wrap">
+    <a class="btn btn-primary" href="/all">Về danh sách</a>
+    <a class="btn btn-outline-primary" href="/danh-sach-san-pham" target="_blank">Xem JSON</a>
+</div>

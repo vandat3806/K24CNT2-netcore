@@ -1,0 +1,19 @@
+﻿@model NvdStudentInfo
+@{
+    ViewData["Title"] = "Thông tin sinh viên";
+}
+
+<div class="page-heading">
+    <span class="eyebrow eyebrow-dark">THÔNG TIN BÀI NỘP</span>
+    <h1>Thông tin sinh viên</h1>
+    <p>Trang được ánh xạ bằng custom route <code>/sinh-vien</code>.</p>
+</div>
+
+<partial name="_StudentCard" model="Model" />
+
+<div class="info-panel mt-4">
+    <h2>Thông tin Lesson03</h2>
+    <p><strong>Nội dung:</strong> Controller in ASP.NET Core MVC</p>
+    <p><strong>Học phần:</strong> @Model.Subject</p>
+    <p class="mb-0"><strong>Project:</strong> NvdLesson03 · .NET 8.0</p>
+</div>
