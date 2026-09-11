@@ -1,0 +1,57 @@
+﻿@model NvdProduct
+@{
+    ViewData["Title"] = "4 cách truyền dữ liệu";
+    NvdProduct? viewDataProduct = ViewData["NvdProduct"] as NvdProduct;
+    string tempMessage = TempData.Peek("NvdMessage")?.ToString() ?? "Không có dữ liệu TempData.";
+}
+
+<div class="page-heading heading-with-action">
+    <div>
+        <span class="eyebrow eyebrow-dark">CONTROLLER → VIEW</span>
+        <h1>4 cách truyền dữ liệu</h1>
+        <p>Action <code>NvdDataTransfer</code> minh họa đủ bốn cách trong cùng một trang.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="NvdSetTempData">Thử TempData + Redirect</a>
+</div>
+
+<div class="transfer-grid">
+    <article class="transfer-card transfer-blue">
+        <span class="method-tag">CÁCH 1</span>
+        <h2>ViewBag</h2>
+        <code>ViewBag.NvdStudentName</code>
+        <p>@ViewBag.NvdStudentName</p>
+        <small>Thuộc tính động, không cần ép kiểu.</small>
+    </article>
+
+    <article class="transfer-card transfer-violet">
+        <span class="method-tag">CÁCH 2</span>
+        <h2>ViewData</h2>
+        <code>ViewData["NvdStudentId"]</code>
+        <p>@ViewData["NvdStudentId"]</p>
+        @if (viewDataProduct is not null)
+        {
+            <small>@viewDataProduct.ProductCode · @viewDataProduct.ProductName</small>
+        }
+    </article>
+
+    <article class="transfer-card transfer-orange">
+        <span class="method-tag">CÁCH 3</span>
+        <h2>TempData</h2>
+        <code>TempData["NvdMessage"]</code>
+        <p class="transfer-message">@tempMessage</p>
+        <small>Có thể tồn tại qua lần chuyển hướng tiếp theo.</small>
+    </article>
+
+    <article class="transfer-card transfer-green">
+        <span class="method-tag">CÁCH 4</span>
+        <h2>Strongly typed Model</h2>
+        <code>@@model NvdProduct</code>
+        <p>@Model.ProductName</p>
+        <small>@Model.ProductCode · @Model.Price.ToString("N0") đ</small>
+    </article>
+</div>
+
+<div class="note-panel mt-4">
+    <strong>Kết luận:</strong> Với dữ liệu chính của trang, strongly typed Model an toàn kiểu và dễ bảo trì nhất.
+    ViewBag/ViewData phù hợp dữ liệu phụ; TempData phù hợp thông báo sau Redirect.
+</div>

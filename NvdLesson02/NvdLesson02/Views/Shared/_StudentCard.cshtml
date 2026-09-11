@@ -1,0 +1,19 @@
+﻿@model NvdStudentInfo
+
+<article class="student-profile">
+    <div class="profile-avatar">NVD</div>
+    <div>
+        <span class="student-label">SINH VIÊN THỰC HIỆN</span>
+        <h2>@Model.FullName</h2>
+        <dl class="profile-details">
+            <div>
+                <dt>Mã sinh viên</dt>
+                <dd>@Model.StudentId</dd>
+            </div>
+            <div>
+                <dt>Lớp</dt>
+                <dd>@Model.ClassName</dd>
+            </div>
+        </dl>
+    </div>
+</article>

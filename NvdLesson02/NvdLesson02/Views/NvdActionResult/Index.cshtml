@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Các loại ActionResult";
+}
+
+<div class="page-heading">
+    <span class="eyebrow eyebrow-dark">KẾT QUẢ TRẢ VỀ TỪ ACTION</span>
+    <h1>Các loại ActionResult</h1>
+    <p>Nhấn “Chạy thử” để xem response thực tế của từng Action.</p>
+</div>
+
+<div class="result-list">
+    <article class="result-row">
+        <div><span class="result-type">ViewResult</span><h2>Trang Razor hoàn chỉnh</h2><code>return View();</code></div>
+        <a class="btn btn-sm btn-outline-primary" asp-action="Index">Đang xem</a>
+    </article>
+    <article class="result-row">
+        <div><span class="result-type">ContentResult</span><h2>Văn bản thuần</h2><code>return Content(...);</code></div>
+        <a class="btn btn-sm btn-outline-primary" asp-action="ContentDemo" target="_blank">Chạy thử</a>
+    </article>
+    <article class="result-row">
+        <div><span class="result-type">JsonResult</span><h2>Dữ liệu JSON</h2><code>return Json(...);</code></div>
+        <a class="btn btn-sm btn-outline-primary" asp-action="JsonDemo" target="_blank">Chạy thử</a>
+    </article>
+    <article class="result-row">
+        <div><span class="result-type">RedirectToActionResult</span><h2>Chuyển sang Action khác</h2><code>return RedirectToAction(...);</code></div>
+        <a class="btn btn-sm btn-outline-primary" asp-action="RedirectToActionDemo">Chạy thử</a>
+    </article>
+    <article class="result-row">
+        <div><span class="result-type">RedirectResult</span><h2>Chuyển sang URL</h2><code>return Redirect("/");</code></div>
+        <a class="btn btn-sm btn-outline-primary" asp-action="RedirectDemo">Chạy thử</a>
+    </article>
+    <article class="result-row">
+        <div><span class="result-type">FileContentResult</span><h2>Tải xuống tệp</h2><code>return File(...);</code></div>
+        <a class="btn btn-sm btn-outline-primary" asp-action="FileDemo">Tải tệp</a>
+    </article>
+    <article class="result-row">
+        <div><span class="result-type">StatusCodeResult</span><h2>HTTP 204 No Content</h2><code>return StatusCode(204);</code></div>
+        <a class="btn btn-sm btn-outline-primary" asp-action="StatusCodeDemo" target="_blank">Chạy thử</a>
+    </article>
+    <article class="result-row">
+        <div><span class="result-type">NotFoundObjectResult</span><h2>HTTP 404 kèm dữ liệu</h2><code>return NotFound(...);</code></div>
+        <a class="btn btn-sm btn-outline-primary" asp-action="NotFoundDemo" target="_blank">Chạy thử</a>
+    </article>
+    <article class="result-row">
+        <div><span class="result-type">PartialViewResult</span><h2>Một phần giao diện</h2><code>return PartialView(...);</code></div>
+        <a class="btn btn-sm btn-outline-primary" asp-action="PartialViewDemo" target="_blank">Chạy thử</a>
+    </article>
+    <article class="result-row">
+        <div><span class="result-type">EmptyResult</span><h2>Response rỗng</h2><code>return new EmptyResult();</code></div>
+        <a class="btn btn-sm btn-outline-primary" asp-action="EmptyDemo" target="_blank">Chạy thử</a>
+    </article>
+</div>

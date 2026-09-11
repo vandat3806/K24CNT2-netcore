@@ -1,0 +1,43 @@
+﻿@model IReadOnlyList<NvdProduct>
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+}
+
+<div class="page-heading heading-with-action">
+    <div>
+        <span class="eyebrow eyebrow-dark">CONTROLLER + ACTION + VIEW</span>
+        <h1>Danh sách sản phẩm</h1>
+        <p>View nhận trực tiếp <code>IReadOnlyList&lt;NvdProduct&gt;</code> từ Controller.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="NvdDataTransfer">Xem truyền dữ liệu</a>
+</div>
+
+<div class="table-responsive data-table-wrap">
+    <table class="table align-middle mb-0">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Năm</th>
+                <th class="text-end">Giá</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (NvdProduct product in Model)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td><span class="code-pill">@product.ProductCode</span></td>
+                    <td class="fw-semibold">@product.ProductName</td>
+                    <td>@product.YearRelease</td>
+                    <td class="text-end">@product.Price.ToString("N0") đ</td>
+                    <td class="text-end">
+                        <a class="btn btn-sm btn-outline-primary" asp-action="NvdDetails" asp-route-id="@product.Id">Chi tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
