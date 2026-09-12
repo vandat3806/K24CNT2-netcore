@@ -1,0 +1,39 @@
+@model NvdMember
+
+<div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+<div class="form-grid">
+    <div class="field-group">
+        <label asp-for="NvdFullName"></label>
+        <input asp-for="NvdFullName" class="form-control" placeholder="Ví dụ: Nguyễn Văn Đạt" autocomplete="name" />
+        <span asp-validation-for="NvdFullName" class="field-error"></span>
+    </div>
+    <div class="field-group">
+        <label asp-for="NvdUserName"></label>
+        <input asp-for="NvdUserName" class="form-control" placeholder="Ví dụ: nvd2410900021" autocomplete="username" />
+        <span asp-validation-for="NvdUserName" class="field-error"></span>
+    </div>
+    <div class="field-group">
+        <label asp-for="NvdEmail"></label>
+        <input asp-for="NvdEmail" class="form-control" placeholder="name@example.com" autocomplete="email" />
+        <span asp-validation-for="NvdEmail" class="field-error"></span>
+    </div>
+    <div class="field-group">
+        <label asp-for="NvdPhone"></label>
+        <input asp-for="NvdPhone" class="form-control" placeholder="0xxxxxxxxx" autocomplete="tel" />
+        <span asp-validation-for="NvdPhone" class="field-error"></span>
+    </div>
+    <div class="field-group">
+        <label asp-for="NvdClassName"></label>
+        <input asp-for="NvdClassName" class="form-control" placeholder="K24CNT2" />
+        <span asp-validation-for="NvdClassName" class="field-error"></span>
+    </div>
+    <div class="field-group status-field">
+        <span class="field-label">Trạng thái</span>
+        <label class="switch-row">
+            <input asp-for="NvdIsActive" />
+            <span class="switch-ui"></span>
+            <span><strong>Đang hoạt động</strong><small>Hiển thị trạng thái của thành viên</small></span>
+        </label>
+    </div>
+</div>

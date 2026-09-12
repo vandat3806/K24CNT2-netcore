@@ -1,0 +1,39 @@
+@model NvdMember
+@{
+    ViewData["Title"] = "Minh họa Model đơn";
+}
+
+<section class="page-hero">
+    <div class="container page-hero-grid">
+        <div>
+            <span class="eyebrow">ONE OBJECT · STRONGLY TYPED</span>
+            <h1>Truyền một Model ra View</h1>
+            <p>Controller gọi <code>return View(member)</code>; View nhận đúng kiểu bằng <code>@@model NvdMember</code>.</p>
+        </div>
+        <a class="btn btn-outline-light" asp-action="GetMembers">So sánh ViewBag →</a>
+    </div>
+</section>
+
+<div class="container content-shell narrow-shell">
+    <div class="profile-card">
+        <aside class="profile-side">
+            <span class="profile-avatar">NĐ</span>
+            <span class="status-badge active"><i></i>Hoạt động</span>
+            <h2>@Model.NvdFullName</h2>
+            <p>@@@Model.NvdUserName</p>
+            <code>Model.GetType().Name<br /><b>@Model.GetType().Name</b></code>
+        </aside>
+        <div class="profile-details">
+            <div class="detail-heading"><div><span class="eyebrow dark">MODEL METADATA</span><h2>Thông tin thuộc tính</h2></div><span class="class-chip">@Model.NvdClassName</span></div>
+            <dl class="property-list">
+                <div><dt>@Html.DisplayNameFor(model => model.NvdMemberId)</dt><dd>@Html.DisplayFor(model => model.NvdMemberId)</dd></div>
+                <div><dt>@Html.DisplayNameFor(model => model.NvdFullName)</dt><dd>@Html.DisplayFor(model => model.NvdFullName)</dd></div>
+                <div><dt>@Html.DisplayNameFor(model => model.NvdEmail)</dt><dd>@Html.DisplayFor(model => model.NvdEmail)</dd></div>
+                <div><dt>@Html.DisplayNameFor(model => model.NvdPhone)</dt><dd>@Html.DisplayFor(model => model.NvdPhone)</dd></div>
+                <div><dt>@Html.DisplayNameFor(model => model.NvdClassName)</dt><dd>@Html.DisplayFor(model => model.NvdClassName)</dd></div>
+                <div><dt>@Html.DisplayNameFor(model => model.NvdJoinedDate)</dt><dd>@Html.DisplayFor(model => model.NvdJoinedDate)</dd></div>
+            </dl>
+            <div class="info-note"><span>i</span><p><strong>Ưu điểm:</strong> IntelliSense đầy đủ, kiểm tra kiểu khi biên dịch và tái sử dụng metadata từ Data Annotation.</p></div>
+        </div>
+    </div>
+</div>

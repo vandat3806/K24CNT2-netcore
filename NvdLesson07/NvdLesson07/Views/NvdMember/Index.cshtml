@@ -1,0 +1,107 @@
+@model NvdMemberIndexViewModel
+@{
+    ViewData["Title"] = "Danh sách thành viên";
+}
+
+<section class="page-hero compact-hero">
+    <div class="container page-hero-grid">
+        <div>
+            <span class="eyebrow">STRONGLY TYPED VIEW</span>
+            <h1>Danh sách thành viên</h1>
+            <p><code>@@model NvdMemberIndexViewModel</code> cung cấp dữ liệu, bộ lọc và thống kê cho View.</p>
+        </div>
+        <a class="btn btn-light" asp-action="Create">+ Thêm thành viên</a>
+    </div>
+</section>
+
+<div class="container content-shell">
+    <partial name="_StatusAlert" />
+
+    <section class="stat-grid">
+        <article><span class="stat-icon violet">Σ</span><div><strong>@Model.TotalMembers</strong><small>Tổng thành viên</small></div></article>
+        <article><span class="stat-icon green">✓</span><div><strong>@Model.ActiveMembers</strong><small>Đang hoạt động</small></div></article>
+        <article><span class="stat-icon orange">○</span><div><strong>@Model.InactiveMembers</strong><small>Tạm ngưng</small></div></article>
+    </section>
+
+    <section class="data-card">
+        <div class="data-toolbar">
+            <div><span class="eyebrow dark">NVD MEMBER MODEL</span><h2>Dữ liệu hiện có</h2></div>
+            <form method="get" asp-action="Index" class="filter-form">
+                <div class="search-control">
+                    <span>⌕</span>
+                    <input type="search" name="keyword" value="@Model.Keyword" placeholder="Tên, tài khoản, email hoặc lớp..." aria-label="Từ khóa tìm kiếm" />
+                </div>
+                <select asp-for="Status" name="status" aria-label="Lọc trạng thái">
+                    <option value="all">Tất cả trạng thái</option>
+                    <option value="active">Đang hoạt động</option>
+                    <option value="inactive">Tạm ngưng</option>
+                </select>
+                <button type="submit" class="btn btn-dark">Lọc</button>
+                @if (!string.IsNullOrWhiteSpace(Model.Keyword) || Model.Status != "all")
+                {
+                    <a asp-action="Index" class="clear-filter" title="Xóa bộ lọc">×</a>
+                }
+            </form>
+        </div>
+
+        @if (Model.Members.Count > 0)
+        {
+            <div class="table-responsive">
+                <table class="member-table">
+                    <thead>
+                        <tr>
+                            <th>Thành viên</th>
+                            <th>Tài khoản</th>
+                            <th>Liên hệ</th>
+                            <th>Lớp</th>
+                            <th>Trạng thái</th>
+                            <th class="text-end">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var member in Model.Members)
+                        {
+                            var initials = string.Concat(member.NvdFullName.Split(' ', StringSplitOptions.RemoveEmptyEntries).Take(2).Select(part => part[0])).ToUpperInvariant();
+                            <tr>
+                                <td>
+                                    <div class="member-person">
+                                        <span class="avatar">@initials</span>
+                                        <div><strong>@member.NvdFullName</strong><small>#NVD-@member.NvdMemberId.ToString("D3") · @member.NvdJoinedDate.ToString("dd/MM/yyyy")</small></div>
+                                    </div>
+                                </td>
+                                <td><code>@@@member.NvdUserName</code></td>
+                                <td><div class="contact-cell"><span>@member.NvdEmail</span><small>@member.NvdPhone</small></div></td>
+                                <td><span class="class-chip">@member.NvdClassName</span></td>
+                                <td>
+                                    <span class="status-badge @(member.NvdIsActive ? "active" : "inactive")">
+                                        <i></i>@(member.NvdIsActive ? "Hoạt động" : "Tạm ngưng")
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="row-actions">
+                                        <a asp-action="Details" asp-route-id="@member.NvdMemberId" title="Chi tiết" aria-label="Xem chi tiết">↗</a>
+                                        <a asp-action="Edit" asp-route-id="@member.NvdMemberId" title="Cập nhật" aria-label="Cập nhật">✎</a>
+                                        <a asp-action="Delete" asp-route-id="@member.NvdMemberId" class="danger-action" title="Xóa" aria-label="Xóa">×</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-footer">
+                <span>Hiển thị <strong>@Model.Members.Count</strong> / @Model.TotalMembers thành viên</span>
+                <span>Dữ liệu in-memory · tự đặt lại khi khởi động ứng dụng</span>
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <span>⌕</span>
+                <h3>Không tìm thấy dữ liệu</h3>
+                <p>Hãy đổi từ khóa hoặc trạng thái rồi thử lại.</p>
+                <a asp-action="Index" class="btn btn-dark">Xóa bộ lọc</a>
+            </div>
+        }
+    </section>
+</div>

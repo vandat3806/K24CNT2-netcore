@@ -1,0 +1,45 @@
+@model NvdMember
+@{
+    ViewData["Title"] = $"Chi tiết {Model.NvdFullName}";
+    var initials = string.Concat(Model.NvdFullName.Split(' ', StringSplitOptions.RemoveEmptyEntries).Take(2).Select(part => part[0])).ToUpperInvariant();
+}
+
+<section class="page-hero compact-hero">
+    <div class="container page-hero-grid">
+        <div><span class="eyebrow">DETAILS ACTION</span><h1>Hồ sơ thành viên</h1><p>Action tìm Model theo <code>id</code> và trả HTTP 404 nếu không tồn tại.</p></div>
+        <a class="btn btn-outline-light" asp-action="Index">← Quay lại danh sách</a>
+    </div>
+</section>
+
+<div class="container content-shell narrow-shell">
+    <partial name="_StatusAlert" />
+    <article class="member-detail-card">
+        <div class="detail-banner">
+            <span class="large-avatar">@initials</span>
+            <div><span class="status-badge @(Model.NvdIsActive ? "active" : "inactive")"><i></i>@(Model.NvdIsActive ? "Đang hoạt động" : "Tạm ngưng")</span><h2>@Model.NvdFullName</h2><p>@@@Model.NvdUserName · #NVD-@Model.NvdMemberId.ToString("D3")</p></div>
+            <span class="class-chip light-chip">@Model.NvdClassName</span>
+        </div>
+        <div class="detail-body">
+            <div class="contact-panel">
+                <span class="eyebrow dark">THÔNG TIN LIÊN HỆ</span>
+                <dl>
+                    <div><dt>Email</dt><dd>@Model.NvdEmail</dd></div>
+                    <div><dt>Điện thoại</dt><dd>@Model.NvdPhone</dd></div>
+                    <div><dt>Ngày tham gia</dt><dd>@Model.NvdJoinedDate.ToString("dd/MM/yyyy")</dd></div>
+                    <div><dt>Kiểu Model</dt><dd><code>@Model.GetType().Name</code></dd></div>
+                </dl>
+            </div>
+            <aside class="annotation-panel">
+                <span class="eyebrow dark">DATA ANNOTATION</span>
+                <p><code>[Required]</code> bắt buộc dữ liệu</p>
+                <p><code>[EmailAddress]</code> kiểm tra email</p>
+                <p><code>[Display]</code> tạo nhãn thuộc tính</p>
+                <p><code>[RegularExpression]</code> kiểm tra mẫu</p>
+            </aside>
+        </div>
+        <div class="detail-actions">
+            <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model.NvdMemberId">Cập nhật hồ sơ</a>
+            <a class="btn btn-soft-danger" asp-action="Delete" asp-route-id="@Model.NvdMemberId">Xóa thành viên</a>
+        </div>
+    </article>
+</div>

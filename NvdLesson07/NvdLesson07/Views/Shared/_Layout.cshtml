@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Lesson07 Model trong ASP.NET Core MVC - Nguyễn Văn Đạt - 2410900021" />
+    <title>@ViewData["Title"] - ModelLab</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <span class="brand-mark">M</span>
+                <span class="brand-copy">ModelLab<small>ASP.NET CORE MVC</small></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation"
+                    aria-expanded="false" aria-label="Mở menu điều hướng">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavigation">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Tổng quan</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="NvdMember" asp-action="Index">Danh sách</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="NvdMember" asp-action="GetMember">Model đơn</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="NvdMember" asp-action="GetMembers">ViewBag</a></li>
+                    <li class="nav-item"><a class="nav-cta" asp-controller="NvdMember" asp-action="Create">+ Thêm thành viên</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="site-main" role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand"><span class="brand-mark small-mark">M</span><div><strong>ModelLab</strong><small>Bài tập Lesson07 · ASP.NET Core MVC</small></div></div>
+                <div><small>SINH VIÊN</small><strong>Nguyễn Văn Đạt</strong></div>
+                <div><small>MÃ SINH VIÊN · LỚP</small><strong>2410900021 · K24CNT2</strong></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Minh họa ViewBag";
+    var members = ViewBag.Members as IReadOnlyList<NvdMember> ?? [];
+}
+
+<section class="page-hero amber-hero">
+    <div class="container page-hero-grid">
+        <div>
+            <span class="eyebrow">COLLECTION · DYNAMIC DATA</span>
+            <h1>Danh sách qua ViewBag</h1>
+            <p>Controller gán <code>ViewBag.Members</code>; View phải tự ép kiểu để sử dụng an toàn.</p>
+        </div>
+        <a class="btn btn-dark" asp-action="Index">Xem Strongly typed →</a>
+    </div>
+</section>
+
+<div class="container content-shell">
+    <div class="comparison-strip">
+        <div><span>Cách truyền</span><strong>@ViewBag.TransferMethod</strong></div>
+        <div><span>Kiểm tra lúc biên dịch</span><strong class="warning-text">Không</strong></div>
+        <div><span>Số phần tử</span><strong>@members.Count</strong></div>
+        <div><span>Cách truy cập</span><code>ViewBag.Members</code></div>
+    </div>
+
+    <section class="data-card simple-card">
+        <div class="data-toolbar"><div><span class="eyebrow dark">DYNAMIC COLLECTION</span><h2>Kết quả từ ViewBag</h2></div></div>
+        <div class="mini-member-grid">
+            @foreach (var member in members)
+            {
+                var initial = member.NvdFullName.Split(' ', StringSplitOptions.RemoveEmptyEntries).LastOrDefault()?.FirstOrDefault() ?? 'N';
+                <article>
+                    <span class="avatar">@initial</span>
+                    <div><strong>@member.NvdFullName</strong><small>@@@member.NvdUserName · @member.NvdClassName</small></div>
+                    <span class="status-dot @(member.NvdIsActive ? "on" : "off")"></span>
+                </article>
+            }
+        </div>
+        <div class="code-explain">
+            <div><span>CONTROLLER</span><code>ViewBag.Members = _repository.GetAll();</code></div>
+            <div><span>VIEW</span><code>ViewBag.Members as IReadOnlyList&lt;NvdMember&gt;</code></div>
+        </div>
+    </section>
+</div>

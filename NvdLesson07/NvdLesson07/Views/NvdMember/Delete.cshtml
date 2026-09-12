@@ -1,0 +1,25 @@
+@model NvdMember
+@{
+    ViewData["Title"] = "Xác nhận xóa";
+}
+
+<section class="page-hero danger-hero">
+    <div class="container page-hero-grid">
+        <div><span class="eyebrow">DELETE CONFIRMATION</span><h1>Xác nhận xóa dữ liệu</h1><p>GET chỉ hiển thị xác nhận; POST có Anti-forgery Token mới thực hiện thay đổi.</p></div>
+        <span class="route-chip danger-chip">#NVD-@Model.NvdMemberId.ToString("D3")</span>
+    </div>
+</section>
+
+<div class="container content-shell delete-shell">
+    <article class="delete-card">
+        <span class="delete-symbol">!</span>
+        <span class="eyebrow dark">HÀNH ĐỘNG CẦN XÁC NHẬN</span>
+        <h2>Xóa “@Model.NvdFullName”?</h2>
+        <p>Dữ liệu chỉ lưu trong bộ nhớ, nhưng thao tác này vẫn minh họa đúng luồng xóa an toàn của MVC.</p>
+        <div class="delete-member"><span class="avatar">@Model.NvdFullName.First()</span><div><strong>@Model.NvdFullName</strong><small>@@@Model.NvdUserName · @Model.NvdEmail</small></div><span class="class-chip">@Model.NvdClassName</span></div>
+        <form asp-action="DeleteConfirmed" asp-route-id="@Model.NvdMemberId" method="post" class="delete-actions">
+            <a class="btn btn-outline-dark" asp-action="Details" asp-route-id="@Model.NvdMemberId">Không, quay lại</a>
+            <button type="submit" class="btn btn-danger">Có, xóa thành viên</button>
+        </form>
+    </article>
+</div>

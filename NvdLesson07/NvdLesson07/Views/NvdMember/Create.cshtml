@@ -1,0 +1,33 @@
+@model NvdMember
+@{
+    ViewData["Title"] = "Thêm thành viên";
+}
+
+<section class="page-hero form-hero">
+    <div class="container page-hero-grid">
+        <div><span class="eyebrow">CREATE · MODEL BINDING</span><h1>Thêm thành viên mới</h1><p>Biểu mẫu strongly typed gửi dữ liệu đến POST action và kiểm tra bằng Data Annotation.</p></div>
+        <span class="route-chip">POST /thanh-vien/them-moi</span>
+    </div>
+</section>
+
+<div class="container content-shell form-shell">
+    <form asp-action="Create" method="post" class="model-form" novalidate>
+        <div class="form-heading"><div><span class="eyebrow dark">NVD MEMBER MODEL</span><h2>Thông tin thành viên</h2><p>Các trường có dấu <b>*</b> là bắt buộc.</p></div><span class="form-step">01 / 01</span></div>
+        <partial name="_MemberFormFields" model="Model" />
+        <div class="form-actions">
+            <a class="btn btn-outline-dark" asp-action="Index">Hủy bỏ</a>
+            <button type="submit" class="btn btn-primary">Lưu thành viên <span>→</span></button>
+        </div>
+    </form>
+    <aside class="form-guide">
+        <span class="guide-icon">&#123; &#125;</span>
+        <span class="eyebrow dark">MODELSTATE</span>
+        <h3>Validation hai phía</h3>
+        <p>Tag Helper tạo thuộc tính validation cho trình duyệt; Controller vẫn kiểm tra lại bằng <code>ModelState.IsValid</code>.</p>
+        <ol><li><b>1</b>Model Binder nhận form</li><li><b>2</b>Data Annotation chạy</li><li><b>3</b>Repository lưu Model</li></ol>
+    </aside>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

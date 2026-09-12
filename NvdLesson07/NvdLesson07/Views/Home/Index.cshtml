@@ -1,0 +1,97 @@
+@model LessonOverviewViewModel
+@{
+    ViewData["Title"] = "Tổng quan Lesson07";
+}
+
+<section class="hero-section">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="eyebrow">LESSON 07 · MODEL</span>
+            <h1>Dữ liệu rõ ràng.<br /><em>Luồng xử lý chuẩn.</em></h1>
+            <p>
+                Bài thực hành Model trong ASP.NET Core MVC: từ lớp dữ liệu, Data Annotation,
+                model binding đến validation và CRUD hoàn chỉnh.
+            </p>
+            <div class="hero-actions">
+                <a class="btn btn-light btn-lg" asp-controller="NvdMember" asp-action="Index">Xem danh sách</a>
+                <a class="btn btn-outline-light btn-lg" asp-controller="NvdMember" asp-action="Create">Thử model binding</a>
+            </div>
+            <div class="student-line">
+                <span>Thực hiện bởi</span>
+                <strong>@Model.StudentName</strong>
+                <b>@Model.StudentCode</b>
+            </div>
+        </div>
+        <div class="model-visual" aria-label="Minh họa luồng Model MVC">
+            <div class="visual-glow"></div>
+            <div class="code-card">
+                <div class="code-toolbar"><span></span><span></span><span></span><b>NvdMember.cs</b></div>
+                <div class="code-body">
+                    <p><i>[Required]</i></p>
+                    <p><i>[StringLength(80)]</i></p>
+                    <p><b>public string</b> NvdFullName</p>
+                    <p class="indent">&#123; get; set; &#125;</p>
+                </div>
+                <div class="validation-card"><span>✓</span><div><strong>ModelState.IsValid</strong><small>Server-side validation</small></div></div>
+            </div>
+            <div class="model-chip chip-a">Data Model</div>
+            <div class="model-chip chip-b">ViewModel</div>
+        </div>
+    </div>
+</section>
+
+<section class="metrics-section">
+    <div class="container metric-grid">
+        <article><span>01</span><div><strong>@Model.TotalMembers</strong><small>Dữ liệu mẫu</small></div></article>
+        <article><span>02</span><div><strong>@Model.ActiveMembers</strong><small>Đang hoạt động</small></div></article>
+        <article><span>03</span><div><strong>@Model.ModelPropertyCount</strong><small>Thuộc tính Model</small></div></article>
+        <article><span>04</span><div><strong>CRUD</strong><small>Đủ thao tác</small></div></article>
+    </div>
+</section>
+
+<section class="container lesson-section">
+    <div class="section-heading">
+        <div><span class="eyebrow dark">NỘI DUNG THỰC HÀNH</span><h2>Ba lớp trách nhiệm</h2></div>
+        <p>Mỗi lớp Model giải quyết một mục tiêu cụ thể trong ứng dụng.</p>
+    </div>
+    <div class="concept-grid">
+        <article class="concept-card featured">
+            <span class="concept-number">01</span>
+            <code>NvdMember</code>
+            <h3>Data Model</h3>
+            <p>Biểu diễn dữ liệu thành viên, khai báo kiểu dữ liệu, nhãn hiển thị và quy tắc kiểm tra đầu vào.</p>
+            <ul><li>8 thuộc tính có kiểu</li><li>Data Annotation</li><li>Giá trị mặc định</li></ul>
+        </article>
+        <article class="concept-card">
+            <span class="concept-number">02</span>
+            <code>NvdMemberIndexViewModel</code>
+            <h3>ViewModel</h3>
+            <p>Gom danh sách, bộ lọc và thống kê để View nhận đúng dữ liệu cần hiển thị.</p>
+            <ul><li>Strongly typed View</li><li>Không dùng dynamic</li><li>Dễ kiểm thử</li></ul>
+        </article>
+        <article class="concept-card">
+            <span class="concept-number">03</span>
+            <code>INvdMemberRepository</code>
+            <h3>Repository Model</h3>
+            <p>Tách việc lưu trữ in-memory khỏi Controller và cấp phát qua Dependency Injection.</p>
+            <ul><li>Mock data rõ ràng</li><li>CRUD độc lập</li><li>Singleton lifetime</li></ul>
+        </article>
+    </div>
+</section>
+
+<section class="flow-section">
+    <div class="container flow-grid">
+        <div class="flow-copy">
+            <span class="eyebrow">MODEL BINDING FLOW</span>
+            <h2>Từ form đến dữ liệu hợp lệ</h2>
+            <p>POST action nhận dữ liệu, MVC bind vào Model, chạy Data Annotation rồi Controller quyết định lưu hoặc trả lại lỗi.</p>
+            <a asp-controller="NvdMember" asp-action="Create">Mở form minh họa <span>→</span></a>
+        </div>
+        <ol class="flow-steps">
+            <li><b>1</b><span>HTML Form</span><small>Người dùng nhập</small></li>
+            <li><b>2</b><span>Model Binder</span><small>Tạo NvdMember</small></li>
+            <li><b>3</b><span>Validation</span><small>Data Annotation</small></li>
+            <li><b>4</b><span>Repository</span><small>Lưu dữ liệu</small></li>
+        </ol>
+    </div>
+</section>

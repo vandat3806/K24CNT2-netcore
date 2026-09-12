@@ -1,0 +1,33 @@
+@model NvdMember
+@{
+    ViewData["Title"] = "Cập nhật thành viên";
+}
+
+<section class="page-hero form-hero edit-hero">
+    <div class="container page-hero-grid">
+        <div><span class="eyebrow">EDIT · MODEL BINDING</span><h1>Cập nhật hồ sơ</h1><p>Route cung cấp <code>id = @Model.NvdMemberId</code>; form bind các trường được cho phép bằng thuộc tính <code>[Bind]</code>.</p></div>
+        <span class="route-chip">#NVD-@Model.NvdMemberId.ToString("D3")</span>
+    </div>
+</section>
+
+<div class="container content-shell form-shell">
+    <form asp-action="Edit" asp-route-id="@Model.NvdMemberId" method="post" class="model-form" novalidate>
+        <div class="form-heading"><div><span class="eyebrow dark">UPDATE MODEL</span><h2>@Model.NvdFullName</h2><p>Ngày tham gia được Repository giữ nguyên khi cập nhật.</p></div><span class="form-step">EDIT</span></div>
+        <partial name="_MemberFormFields" model="Model" />
+        <div class="form-actions">
+            <a class="btn btn-outline-dark" asp-action="Details" asp-route-id="@Model.NvdMemberId">Hủy bỏ</a>
+            <button type="submit" class="btn btn-primary">Lưu thay đổi <span>→</span></button>
+        </div>
+    </form>
+    <aside class="form-guide">
+        <span class="guide-icon">✎</span>
+        <span class="eyebrow dark">PRG PATTERN</span>
+        <h3>Post / Redirect / Get</h3>
+        <p>Sau khi cập nhật thành công, Controller chuyển hướng đến Details để tránh gửi lại form khi tải lại trang.</p>
+        <code>RedirectToAction(nameof(Details))</code>
+    </aside>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

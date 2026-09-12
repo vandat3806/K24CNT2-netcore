@@ -1,0 +1,8 @@
+@if (TempData["SuccessMessage"] is string message)
+{
+    <div class="status-alert" role="status">
+        <span>✓</span>
+        <div><strong>Thao tác thành công</strong><p>@message</p></div>
+        <button type="button" aria-label="Đóng thông báo" onclick="this.parentElement.remove()">×</button>
+    </div>
+}
