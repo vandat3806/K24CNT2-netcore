@@ -1,0 +1,74 @@
+@model IReadOnlyList<Category>
+@{
+    ViewData["Title"] = "Razor Demo";
+    var currentHour = DateTime.Now.Hour;
+    var greeting = currentHour < 12 ? "Chào buổi sáng" : currentHour < 18 ? "Chào buổi chiều" : "Chào buổi tối";
+    var colors = new[] { "Tím", "Xanh", "Cam", "Hồng" };
+}
+
+<section class="page-hero small">
+    <div class="container">
+        <span class="eyebrow">RAZOR SYNTAX</span>
+        <h1>Biểu thức, điều kiện và vòng lặp</h1>
+        <p>Trang minh họa cú pháp Razor và các cách Controller truyền dữ liệu sang View.</p>
+    </div>
+</section>
+
+<section class="container content-section razor-grid">
+    <article class="demo-card featured">
+        <span class="demo-label">Biến &amp; biểu thức</span>
+        <h2>@greeting, Nguyễn Văn Đạt!</h2>
+        <p>Thời điểm render View: <strong>@DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy")</strong></p>
+        <code>@@DateTime.Now.ToString(...)</code>
+    </article>
+
+    <article class="demo-card">
+        <span class="demo-label">if / else</span>
+        @if (currentHour >= 8 && currentHour <= 17)
+        {
+            <h3><span class="status-dot online"></span> Giờ học tập</h3>
+            <p>Đây là thời gian phù hợp để thực hành ASP.NET Core MVC.</p>
+        }
+        else
+        {
+            <h3><span class="status-dot away"></span> Ngoài giờ học</h3>
+            <p>Hãy nghỉ ngơi hợp lý và quay lại khi sẵn sàng.</p>
+        }
+    </article>
+
+    <article class="demo-card">
+        <span class="demo-label">for</span>
+        <div class="color-list">
+            @for (var index = 0; index < colors.Length; index++)
+            {
+                <span><b>@(index + 1)</b>@colors[index]</span>
+            }
+        </div>
+    </article>
+
+    <article class="demo-card">
+        <span class="demo-label">foreach + Strongly Typed Model</span>
+        <ul class="clean-list">
+            @foreach (var category in Model)
+            {
+                <li><span>@category.Icon @category.Name</span><strong>@category.ProductCount</strong></li>
+            }
+        </ul>
+    </article>
+
+    <article class="demo-card data-card">
+        <span class="demo-label">Controller → View</span>
+        <dl>
+            <div><dt>ViewBag</dt><dd>@ViewBag.Message</dd></div>
+            <div><dt>ViewData</dt><dd>@ViewData["Lesson"]</dd></div>
+            <div><dt>TempData</dt><dd>@TempData["Notice"]</dd></div>
+            <div><dt>Model</dt><dd>@Model.Count danh mục (strongly typed)</dd></div>
+        </dl>
+    </article>
+</section>
+
+@section Styles {
+    <style>
+        .razor-grid::before { content: "RenderSection: Styles"; }
+    </style>
+}

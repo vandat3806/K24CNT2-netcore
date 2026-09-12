@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="title">
+  <title id="title">Bìa sách màu xanh lá</title><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#1c9b72"/><stop offset="1" stop-color="#075748"/></linearGradient></defs>
+  <rect width="300" height="400" rx="18" fill="url(#g)"/><path d="M0 290c65-52 112-13 161-50 50-38 89-5 139-42v202H0z" fill="#06483e" opacity=".66"/><path d="M73 260c22-72 58-116 108-143-12 54-43 102-108 143z" fill="#b9f0ae" opacity=".77"/><path d="M77 257l91-125" stroke="#fff" stroke-width="4" opacity=".7"/>
+  <text x="43" y="81" fill="#fff" font-family="Arial" font-size="23" font-weight="700">PHIÊU LƯU KÝ</text><text x="44" y="107" fill="#b9f0dd" font-family="Arial" font-size="13">HÀNH TRÌNH TRƯỞNG THÀNH</text>
+</svg>

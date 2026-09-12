@@ -1,0 +1,19 @@
+@model Book
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section class="container content-section">
+    <nav class="breadcrumbs"><a asp-action="Index">Thư viện sách</a><span>/</span><span>Chi tiết</span></nav>
+    <div class="detail-shell book-detail">
+        <div class="book-cover-large"><img src="@Model.Image" alt="Bìa sách @Model.Title" /></div>
+        <div class="detail-copy">
+            <span class="eyebrow dark">@Model.GenreName</span>
+            <h1>@Model.Title</h1>
+            <p class="book-author">Tác giả: <strong>@Model.AuthorName</strong></p>
+            <p>@Model.Summary</p>
+            <div class="book-facts"><div><span>Giá bán</span><strong>@Model.Price.ToString("N0") đ</strong></div><div><span>Số trang</span><strong>@Model.TotalPage</strong></div><div><span>Mã sách</span><strong>#@Model.Id</strong></div></div>
+            <div class="detail-actions"><a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Chỉnh sửa</a><a class="btn btn-outline-secondary" asp-action="Index">Quay lại</a></div>
+        </div>
+    </div>
+</section>

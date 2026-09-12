@@ -1,0 +1,23 @@
+@model Product
+
+<article class="product-card">
+    <a class="product-image" asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id">
+        @if (Model.IsHot)
+        {
+            <span class="product-badge">Nổi bật</span>
+        }
+        <img src="@Model.Image" alt="@Model.Name" />
+    </a>
+    <div class="product-body">
+        <span class="product-category">@Model.CategoryName</span>
+        <h3><a asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id">@Model.Name</a></h3>
+        <p>@Model.Description</p>
+        <div class="price-row">
+            <strong>@Model.Price.ToString("N0") đ</strong>
+            @if (Model.OldPrice.HasValue)
+            {
+                <del>@Model.OldPrice.Value.ToString("N0") đ</del>
+            }
+        </div>
+    </div>
+</article>

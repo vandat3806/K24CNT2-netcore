@@ -1,0 +1,45 @@
+@model Book
+
+<div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+<div class="form-grid">
+    <div class="form-group full">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" placeholder="Nhập tên sách" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AuthorId" class="form-label"></label>
+        <select asp-for="AuthorId" asp-items="ViewBag.Authors" class="form-select">
+            <option value="0">-- Chọn tác giả --</option>
+        </select>
+        <span asp-validation-for="AuthorId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GenreId" class="form-label"></label>
+        <select asp-for="GenreId" asp-items="ViewBag.Genres" class="form-select">
+            <option value="0">-- Chọn thể loại --</option>
+        </select>
+        <span asp-validation-for="GenreId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price" class="form-label"></label>
+        <div class="input-group"><input asp-for="Price" class="form-control" /><span class="input-group-text">VNĐ</span></div>
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TotalPage" class="form-label"></label>
+        <div class="input-group"><input asp-for="TotalPage" class="form-control" /><span class="input-group-text">trang</span></div>
+        <span asp-validation-for="TotalPage" class="text-danger"></span>
+    </div>
+    <div class="form-group full">
+        <label asp-for="ImageFile" class="form-label"></label>
+        <input asp-for="ImageFile" type="file" accept=".jpg,.jpeg,.png,.webp,.svg" class="form-control" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+        <small class="form-hint">JPG, PNG, WEBP hoặc SVG; tối đa 2 MB. Có thể bỏ trống để dùng ảnh mặc định.</small>
+    </div>
+    <div class="form-group full">
+        <label asp-for="Summary" class="form-label"></label>
+        <textarea asp-for="Summary" class="form-control" rows="5" placeholder="Viết giới thiệu ngắn về cuốn sách"></textarea>
+        <span asp-validation-for="Summary" class="text-danger"></span>
+    </div>
+</div>

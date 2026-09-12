@@ -1,0 +1,22 @@
+@model Book
+@{
+    ViewData["Title"] = "Chỉnh sửa sách";
+}
+
+<section class="page-hero small">
+    <div class="container"><span class="eyebrow">MODEL BINDING · VALIDATION</span><h1>Chỉnh sửa sách</h1><p>Cập nhật thông tin của “@Model.Title”.</p></div>
+</section>
+
+<section class="container content-section form-page">
+    <div class="form-card">
+        <div class="edit-preview"><img src="@Model.Image" alt="Ảnh bìa hiện tại" /><div><span>Đang chỉnh sửa</span><strong>@Model.Title</strong></div></div>
+        <form asp-controller="Book" asp-action="Edit" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="Image" type="hidden" />
+            <partial name="_BookFormPartial" model="Model" />
+            <div class="form-actions"><a class="btn btn-outline-secondary" asp-action="Index">Hủy</a><button type="submit" class="btn btn-primary">Cập nhật</button></div>
+        </form>
+    </div>
+</section>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

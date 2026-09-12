@@ -1,0 +1,22 @@
+@model IReadOnlyList<Category>
+
+<aside class="category-panel">
+    <div class="category-heading">
+        <span>Danh mục</span>
+        <span class="muted-count">@Model.Sum(item => item.ProductCount) SP</span>
+    </div>
+    <nav aria-label="Danh mục sản phẩm">
+        @foreach (var category in Model)
+        {
+            <a class="category-link" href="#new-products">
+                <span class="category-icon">@category.Icon</span>
+                <span>@category.Name</span>
+                <span class="category-count">@category.ProductCount</span>
+            </a>
+        }
+    </nav>
+    <div class="partial-note">
+        <strong>Partial View</strong>
+        <span>Menu này được tải từ <code>_CategoryMenu.cshtml</code>.</span>
+    </div>
+</aside>

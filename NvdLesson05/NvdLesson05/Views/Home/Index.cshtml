@@ -1,0 +1,51 @@
+@model IReadOnlyList<Product>
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<partial name="_HeroBanner" />
+
+<section class="lesson-strip">
+    <div class="container lesson-grid">
+        <div><strong>01</strong><span>Razor Syntax</span></div>
+        <div><strong>02</strong><span>HTML &amp; Tag Helpers</span></div>
+        <div><strong>03</strong><span>Partial View</span></div>
+        <div><strong>04</strong><span>View Component</span></div>
+    </div>
+</section>
+
+<section class="content-section" id="new-products">
+    <div class="container storefront-grid">
+        <partial name="_CategoryMenu" model="CatalogData.Categories" />
+
+        <div>
+            <div class="section-heading compact">
+                <div>
+                    <span class="eyebrow dark">DỮ LIỆU TỪ HOMECONTROLLER</span>
+                    <h2>Sản phẩm mới nhất</h2>
+                </div>
+                <span class="result-count">@Model.Count sản phẩm</span>
+            </div>
+            <div class="product-grid">
+                @foreach (var product in Model)
+                {
+                    <partial name="_ProductCard" model="product" />
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@await Component.InvokeAsync("HotProduct", new { count = 4 })
+
+<section class="container concept-section">
+    <div class="concept-card">
+        <span class="concept-number">05</span>
+        <div>
+            <span class="eyebrow dark">LAYOUT &amp; VIEWSTART</span>
+            <h2>Một bố cục, nhiều View nhất quán</h2>
+            <p><code>_ViewStart.cshtml</code> đặt layout mặc định; <code>_NvdLayout.cshtml</code> dùng RenderBody và RenderSection để ghép nội dung từng trang.</p>
+        </div>
+        <a class="btn btn-dark" asp-controller="Book" asp-action="Index">Khám phá bài lab</a>
+    </div>
+</section>

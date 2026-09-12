@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="title">
+  <title id="title">Bìa sách màu cam</title><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#f89b3c"/><stop offset="1" stop-color="#b84d28"/></linearGradient></defs>
+  <rect width="300" height="400" rx="18" fill="url(#g)"/><circle cx="150" cy="199" r="84" fill="none" stroke="#fff" stroke-width="2" opacity=".38"/><circle cx="150" cy="199" r="56" fill="none" stroke="#fff" stroke-width="2" opacity=".28"/><path d="M150 128v142M79 199h142" stroke="#fff" stroke-width="2" opacity=".23"/>
+  <text x="42" y="72" fill="#fff" font-family="Arial" font-size="27" font-weight="700">KẾT NỐI</text><text x="43" y="101" fill="#ffe2c2" font-family="Arial" font-size="14">NGHỆ THUẬT GIAO TIẾP</text><rect x="43" y="324" width="77" height="6" rx="3" fill="#fff" opacity=".8"/>
+</svg>

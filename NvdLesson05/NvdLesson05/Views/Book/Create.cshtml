@@ -1,0 +1,20 @@
+@model Book
+@{
+    ViewData["Title"] = "Thêm sách";
+}
+
+<section class="page-hero small">
+    <div class="container"><span class="eyebrow">TAG HELPERS · POST ACTION</span><h1>Thêm sách mới</h1><p>Biểu mẫu strongly typed có kiểm tra dữ liệu và hỗ trợ tải ảnh bìa.</p></div>
+</section>
+
+<section class="container content-section form-page">
+    <div class="form-card">
+        <div class="form-card-heading"><span class="step-number">01</span><div><h2>Thông tin sách</h2><p>Các trường có dấu * là bắt buộc.</p></div></div>
+        <form asp-controller="Book" asp-action="Create" method="post" enctype="multipart/form-data">
+            <partial name="_BookFormPartial" model="Model" />
+            <div class="form-actions"><a class="btn btn-outline-secondary" asp-action="Index">Hủy</a><button type="submit" class="btn btn-primary">Lưu sách</button></div>
+        </form>
+    </div>
+</section>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

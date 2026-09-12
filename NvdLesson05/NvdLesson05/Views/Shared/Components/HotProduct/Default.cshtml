@@ -1,0 +1,19 @@
+@model IReadOnlyList<Product>
+
+<section class="content-section hot-section">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow dark">VIEW COMPONENT</span>
+                <h2>Sản phẩm nổi bật</h2>
+            </div>
+            <span class="code-pill">@@await Component.InvokeAsync(...)</span>
+        </div>
+        <div class="product-grid hot-grid">
+            @foreach (var product in Model)
+            {
+                <partial name="_ProductCard" model="product" />
+            }
+        </div>
+    </div>
+</section>

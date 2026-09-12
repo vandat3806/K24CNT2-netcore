@@ -1,0 +1,23 @@
+@model Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="container content-section">
+    <nav class="breadcrumbs"><a asp-controller="Home" asp-action="Index">Trang chủ</a><span>/</span><span>@Model.CategoryName</span></nav>
+    <div class="detail-shell product-detail">
+        <div class="detail-image"><img src="@Model.Image" alt="@Model.Name" /></div>
+        <div class="detail-copy">
+            <span class="eyebrow dark">@Model.CategoryName</span>
+            <h1>@Model.Name</h1>
+            <p>@Model.Description</p>
+            <div class="detail-price">@Model.Price.ToString("N0") đ</div>
+            @if (Model.OldPrice.HasValue)
+            {
+                <p class="old-price">Giá niêm yết: <del>@Model.OldPrice.Value.ToString("N0") đ</del></p>
+            }
+            <div class="detail-meta"><span>Miễn phí giao hàng</span><span>Bảo hành 12 tháng</span><span>Đổi trả trong 7 ngày</span></div>
+            <a class="btn btn-dark" asp-controller="Home" asp-action="Index">← Quay về trang chủ</a>
+        </div>
+    </div>
+</section>

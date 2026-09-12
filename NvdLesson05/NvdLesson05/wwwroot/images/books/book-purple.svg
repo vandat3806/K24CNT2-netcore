@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="title">
+  <title id="title">Bìa sách màu tím</title><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#8e5dc5"/><stop offset="1" stop-color="#3f235e"/></linearGradient></defs>
+  <rect width="300" height="400" rx="18" fill="url(#g)"/><path d="M0 314l74-70 57 42 74-103 95 89v128H0z" fill="#2b173f" opacity=".63"/><circle cx="228" cy="78" r="37" fill="#f9dfaa" opacity=".88"/><path d="M41 340h218" stroke="#cdb5e6" stroke-width="3" opacity=".55"/>
+  <text x="41" y="115" fill="#fff" font-family="Arial" font-size="31" font-weight="700">LÃO HẠC</text><text x="43" y="143" fill="#dac9eb" font-family="Arial" font-size="13">VĂN HỌC VIỆT NAM</text>
+</svg>

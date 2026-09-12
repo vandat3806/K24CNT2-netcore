@@ -1,0 +1,75 @@
+@model IReadOnlyList<Book>
+@{
+    ViewData["Title"] = "Quản lý sách";
+}
+
+<section class="page-hero library-hero">
+    <div class="container page-hero-row">
+        <div>
+            <span class="eyebrow">BOOK CONTROLLER · TAG HELPERS</span>
+            <h1>Thư viện sách</h1>
+            <p>Quản lý danh sách, thêm mới, chỉnh sửa và tải Partial View bằng AJAX.</p>
+        </div>
+        <div class="hero-stat"><strong>@ViewBag.TotalBooks</strong><span>đầu sách</span></div>
+    </div>
+</section>
+
+<section class="container content-section book-section">
+    @if (TempData["Success"] is string message)
+    {
+        <div class="alert alert-success custom-alert" role="alert">✓ @message</div>
+    }
+
+    <div class="toolbar-card">
+        <form method="get" asp-controller="Book" asp-action="Index" class="filter-form">
+            <div>
+                <label for="authorId">Tác giả</label>
+                <select id="authorId" name="authorId" asp-items="ViewBag.Authors" class="form-select">
+                    <option value="">Tất cả tác giả</option>
+                </select>
+            </div>
+            <div>
+                <label for="genreId">Thể loại</label>
+                <select id="genreId" name="genreId" asp-items="ViewBag.Genres" class="form-select">
+                    <option value="">Tất cả thể loại</option>
+                </select>
+            </div>
+            <div class="toolbar-actions">
+                <button type="submit" class="btn btn-dark">Lọc sách</button>
+                <a class="btn btn-outline-secondary" asp-action="Index">Đặt lại</a>
+            </div>
+        </form>
+        <a class="btn btn-primary" asp-action="Create">+ Thêm sách mới</a>
+    </div>
+
+    <div class="table-card">
+        <div class="table-card-heading">
+            <div><span class="eyebrow dark">PARTIAL VIEW</span><h2>Danh sách hiện tại</h2></div>
+            <button id="loadLatest" type="button" class="btn btn-outline-primary" data-url="@Url.Action("Latest", "Book")">Tải 3 sách mới bằng AJAX</button>
+        </div>
+        <div id="bookTable">
+            <partial name="_BookTablePartial" model="Model" />
+        </div>
+        <div id="ajaxStatus" class="ajax-status" aria-live="polite"></div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('#loadLatest').on('click', function () {
+                const button = $(this);
+                const originalText = button.text();
+                button.prop('disabled', true).text('Đang tải...');
+                $('#ajaxStatus').text('Đang gọi BookController.Latest...');
+
+                $('#bookTable').load(button.data('url'), function (_response, status) {
+                    button.prop('disabled', false).text(originalText);
+                    $('#ajaxStatus').text(status === 'success'
+                        ? 'Đã nạp Partial View mới mà không tải lại toàn trang.'
+                        : 'Không thể tải dữ liệu. Vui lòng thử lại.');
+                });
+            });
+        });
+    </script>
+}

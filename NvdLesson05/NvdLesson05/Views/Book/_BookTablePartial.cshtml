@@ -1,0 +1,45 @@
+@model IReadOnlyList<Book>
+
+@if (Model.Count == 0)
+{
+    <div class="empty-state">
+        <strong>Không tìm thấy sách phù hợp.</strong>
+        <span>Hãy thay đổi bộ lọc hoặc thêm một đầu sách mới.</span>
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table book-table align-middle">
+            <thead>
+                <tr>
+                    <th>Sách</th>
+                    <th>Tác giả</th>
+                    <th>Thể loại</th>
+                    <th>Thông tin</th>
+                    <th class="text-end">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="book-cell">
+                                <img src="@book.Image" alt="Bìa sách @book.Title" />
+                                <div><strong>@book.Title</strong><span>#@book.Id</span></div>
+                            </div>
+                        </td>
+                        <td>@book.AuthorName</td>
+                        <td><span class="soft-badge">@book.GenreName</span></td>
+                        <td><strong>@book.Price.ToString("N0") đ</strong><span class="table-sub">@book.TotalPage trang</span></td>
+                        <td class="text-end action-links">
+                            <a asp-action="Details" asp-route-id="@book.Id">Chi tiết</a>
+                            <a asp-action="Edit" asp-route-id="@book.Id">Sửa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
