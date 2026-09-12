@@ -1,0 +1,59 @@
+@model IReadOnlyList<Category>
+@{
+    ViewData["Title"] = "Cấu trúc View Part 2";
+    var viewItems = new[]
+    {
+        new { Number = "01", Title = "Layout", File = "Views/Shared/_StoreLayout.cshtml", Description = "Khung HTML dùng chung với RenderBody và ba RenderSection." },
+        new { Number = "02", Title = "ViewStart", File = "Views/_ViewStart.cshtml", Description = "Tự động chọn layout mặc định cho mọi View trong thư mục." },
+        new { Number = "03", Title = "Partial View", File = "Views/Shared/_ProductGrid.cshtml", Description = "Tách giao diện nhỏ, nhận Model và có thể cập nhật bằng AJAX." },
+        new { Number = "04", Title = "View Component", File = "ViewComponents/HotProductViewComponent.cs", Description = "Đóng gói cả logic lấy dữ liệu và phần giao diện hiển thị." }
+    };
+}
+
+@section Head {
+    <style>.guide-card:nth-child(even) { transform: translateY(18px); }</style>
+}
+
+@section Announcement {
+    <partial name="_Announcement" />
+}
+
+<section class="inner-hero">
+    <div class="container inner-hero-grid">
+        <div><span class="overline">HƯỚNG DẪN BÀI LÀM</span><h1>Cấu trúc View nâng cao</h1><p>Cách Layout, Section, Partial View, AJAX và View Component phối hợp trong NvdLesson06.</p></div>
+        <div class="student-panel"><span>Người thực hiện</span><strong>Nguyễn Văn Đạt</strong><p>2410900021 · K24CNT2</p></div>
+    </div>
+</section>
+
+<section class="container guide-section">
+    <div class="guide-grid">
+        @foreach (var item in viewItems)
+        {
+            <article class="guide-card">
+                <span class="guide-number">@item.Number</span>
+                <h2>@item.Title</h2>
+                <code>@item.File</code>
+                <p>@item.Description</p>
+            </article>
+        }
+    </div>
+
+    <div class="request-flow">
+        <div class="flow-title"><span class="overline dark">LUỒNG AJAX</span><h2>Một lần nhấp, bốn bước xử lý</h2></div>
+        <ol>
+            <li><b>1</b><span>Chọn danh mục</span><small>JavaScript nhận categoryId</small></li>
+            <li><b>2</b><span>Gửi AJAX GET</span><small>/Home/ProductGrid</small></li>
+            <li><b>3</b><span>Controller lọc</span><small>Trả về PartialView</small></li>
+            <li><b>4</b><span>Cập nhật HTML</span><small>Không reload trang</small></li>
+        </ol>
+    </div>
+
+    <div class="section-demo">
+        <div><span class="overline dark">RENDERSECTION</span><h2>Trang này đang dùng 3 Section</h2><p><code>Head</code> thêm CSS riêng, <code>Announcement</code> thêm thanh thông báo và <code>Scripts</code> chạy mã chỉ dành cho trang này.</p></div>
+        <span id="sectionStatus" class="status-chip">Đang kiểm tra...</span>
+    </div>
+</section>
+
+@section Scripts {
+    <script>document.getElementById('sectionStatus').textContent = 'Scripts Section hoạt động ✓';</script>
+}

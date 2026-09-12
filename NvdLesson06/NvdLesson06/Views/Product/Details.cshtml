@@ -1,0 +1,36 @@
+@model Product
+@{
+    ViewData["Title"] = Model.Name;
+    var relatedProducts = ViewBag.RelatedProducts as IReadOnlyList<Product> ?? [];
+}
+
+<section class="detail-page">
+    <div class="container">
+        <nav class="breadcrumb-line"><a asp-controller="Home" asp-action="Index">Trang chủ</a><span>/</span><span>@Model.CategoryName</span><span>/</span><strong>@Model.Name</strong></nav>
+        <div class="detail-card">
+            <div class="detail-media">
+                @if (Model.DiscountPercent > 0) { <span class="large-discount">Tiết kiệm @Model.DiscountPercent%</span> }
+                <img src="@Model.Image" alt="@Model.Name" />
+            </div>
+            <div class="detail-content">
+                <span class="overline dark">@Model.CategoryName · ID @Model.Id</span>
+                <h1>@Model.Name</h1>
+                <div class="rating-line"><span>★ @Model.Rating.ToString("0.0")</span><span>@Model.Sold sản phẩm đã bán</span><span>Còn hàng</span></div>
+                <p class="detail-description">@Model.Description</p>
+                <div class="detail-price"><strong>@Model.Price.ToString("N0")₫</strong>@if (Model.OldPrice.HasValue) { <del>@Model.OldPrice.Value.ToString("N0")₫</del> }</div>
+                <div class="benefit-grid"><div><b>✓</b><span>Giao hàng miễn phí</span></div><div><b>✓</b><span>Bảo hành 12 tháng</span></div><div><b>✓</b><span>Đổi trả trong 7 ngày</span></div></div>
+                <a class="btn btn-dark" asp-controller="Home" asp-action="Index">← Quay lại cửa hàng</a>
+            </div>
+        </div>
+
+        @if (relatedProducts.Count > 0)
+        {
+            <section class="related-section">
+                <div class="section-heading"><div><span class="overline dark">PARTIAL VIEW</span><h2>Sản phẩm cùng danh mục</h2></div></div>
+                <div class="related-grid">
+                    @foreach (var product in relatedProducts) { <partial name="_ProductCard" model="product" /> }
+                </div>
+            </section>
+        }
+    </div>
+</section>

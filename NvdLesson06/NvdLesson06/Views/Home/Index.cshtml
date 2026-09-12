@@ -1,0 +1,104 @@
+@model StorefrontViewModel
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+@section Head {
+    <meta name="theme-color" content="#14241d" />
+}
+
+@section Announcement {
+    <partial name="_Announcement" />
+}
+
+<partial name="_HeroBanner" />
+<partial name="_ServiceStrip" />
+
+<section class="catalog-section" id="new-products">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="overline dark">DỮ LIỆU TỪ HOMECONTROLLER.INDEX</span>
+                <h2>Sản phẩm mới nhất</h2>
+                <p>Danh sách ban đầu được truyền bằng strongly typed ViewModel.</p>
+            </div>
+            <div class="search-box">
+                <label class="visually-hidden" for="productKeyword">Tìm sản phẩm</label>
+                <input id="productKeyword" type="search" placeholder="Tìm theo tên hoặc danh mục..." autocomplete="off" />
+                <span>⌕</span>
+            </div>
+        </div>
+
+        <div class="catalog-layout">
+            <partial name="_CategoryMenu" model="Model.Categories" />
+
+            <div class="products-area">
+                <div class="result-toolbar">
+                    <span id="filterName">Tất cả sản phẩm</span>
+                    <span id="resultCount">@Model.NewestProducts.Count kết quả</span>
+                </div>
+                <div id="productGrid" aria-live="polite">
+                    <partial name="_ProductGrid" model="Model.NewestProducts" />
+                </div>
+                <div id="ajaxMessage" class="ajax-message">Sẵn sàng lọc bằng Partial View + AJAX.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@await Component.InvokeAsync("HotProduct", new { count = 4, minRating = 4.7 })
+
+<section class="lab-summary">
+    <div class="container summary-card">
+        <div class="summary-copy"><span class="overline dark">LESSON06 · PART 2</span><h2>Ghép các View thành một ứng dụng hoàn chỉnh</h2><p>Mỗi khối có một trách nhiệm rõ ràng, dễ tái sử dụng và kiểm thử.</p></div>
+        <div class="summary-stats">
+            <div><strong>6</strong><span>Partial Views</span></div>
+            <div><strong>1</strong><span>View Component</span></div>
+            <div><strong>@Model.TotalProducts</strong><span>Sản phẩm mẫu</span></div>
+        </div>
+        <a class="btn btn-dark" asp-route="view-guide">Xem sơ đồ cấu trúc</a>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        $(function () {
+            const endpoint = '@Url.Action("ProductGrid", "Home")';
+            let selectedCategory = '';
+            let searchTimer;
+
+            function loadProducts() {
+                const keyword = $('#productKeyword').val().trim();
+                $('#productGrid').addClass('is-loading');
+                $('#ajaxMessage').text('Đang gọi HomeController.ProductGrid...');
+
+                $.get(endpoint, { categoryId: selectedCategory, keyword: keyword })
+                    .done(function (html) {
+                        $('#productGrid').html(html);
+                        const count = $('#productGrid [data-product-count]').data('product-count') || 0;
+                        $('#resultCount').text(count + ' kết quả');
+                        $('#ajaxMessage').text('Đã cập nhật Partial View mà không tải lại toàn trang.');
+                    })
+                    .fail(function () {
+                        $('#ajaxMessage').text('Không thể tải dữ liệu. Vui lòng thử lại.');
+                    })
+                    .always(function () {
+                        $('#productGrid').removeClass('is-loading');
+                    });
+            }
+
+            $('.category-button').on('click', function () {
+                $('.category-button').removeClass('active');
+                $(this).addClass('active');
+                selectedCategory = $(this).data('category') ?? '';
+                $('#filterName').text($(this).find('span:nth-child(2)').text());
+                loadProducts();
+            });
+
+            $('#productKeyword').on('input', function () {
+                clearTimeout(searchTimer);
+                searchTimer = setTimeout(loadProducts, 300);
+            });
+        });
+    </script>
+}

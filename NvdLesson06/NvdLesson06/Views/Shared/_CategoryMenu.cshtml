@@ -1,0 +1,20 @@
+@model IReadOnlyList<Category>
+
+<aside class="category-panel">
+    <div class="panel-heading">
+        <div><span>PARTIAL VIEW</span><h2>Danh mục</h2></div>
+        <span class="file-chip">_CategoryMenu</span>
+    </div>
+    <div class="category-list" role="group" aria-label="Lọc theo danh mục">
+        <button type="button" class="category-button active" data-category="">
+            <span class="category-icon">✦</span><span>Tất cả sản phẩm</span><b>@Model.Sum(item => item.ProductCount)</b>
+        </button>
+        @foreach (var category in Model)
+        {
+            <button type="button" class="category-button" data-category="@category.Id">
+                <span class="category-icon">@category.Icon</span><span>@category.Name</span><b>@category.ProductCount</b>
+            </button>
+        }
+    </div>
+    <div class="panel-note"><span>Không tải lại trang</span><strong>jQuery AJAX</strong></div>
+</aside>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Lesson06 View trong ASP.NET Core MVC Part 2 - Nguyễn Văn Đạt" />
+    <title>@ViewData["Title"] - NovaStore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @await RenderSectionAsync("Head", required: false)
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <span class="brand-symbol">N</span>
+                <span>NovaStore<small>VIEW LAB</small></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Mở menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainMenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#new-products">Sản phẩm mới</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#hot-products">Nổi bật</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-route="view-guide">Cấu trúc View</a></li>
+                    <li class="nav-item"><span class="student-code">2410900021</span></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    @await RenderSectionAsync("Announcement", required: false)
+
+    <main class="site-main">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div><strong>NovaStore</strong><p>Bài tập View ASP.NET Core MVC (Part 2)</p></div>
+            <div><span>Sinh viên</span><strong>Nguyễn Văn Đạt</strong></div>
+            <div><span>Mã sinh viên</span><strong>2410900021 · K24CNT2</strong></div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,16 @@
+@model IReadOnlyList<Product>
+
+<section class="hot-section" id="hot-products">
+    <div class="container">
+        <div class="section-heading light-heading">
+            <div><span class="overline">VIEW COMPONENT · RATING ≥ @ViewData["MinRating"]</span><h2>Sản phẩm bán chạy</h2><p>Component tự lấy, lọc và sắp xếp dữ liệu trước khi render.</p></div>
+            <span class="syntax-chip">@@await Component.InvokeAsync(...)</span>
+        </div>
+        <div class="hot-grid">
+            @foreach (var product in Model)
+            {
+                <partial name="_ProductCard" model="product" />
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,28 @@
+@model Product
+
+<article class="product-card">
+    <a class="product-media" asp-route="product-detail" asp-route-id="@Model.Id">
+        @if (Model.DiscountPercent > 0)
+        {
+            <span class="discount-badge">-@Model.DiscountPercent%</span>
+        }
+        @if (Model.IsHot)
+        {
+            <span class="hot-dot" title="Sản phẩm nổi bật">HOT</span>
+        }
+        <img src="@Model.Image" alt="@Model.Name" loading="lazy" />
+    </a>
+    <div class="product-content">
+        <div class="product-meta"><span>@Model.CategoryName</span><span>★ @Model.Rating.ToString("0.0")</span></div>
+        <h3><a asp-route="product-detail" asp-route-id="@Model.Id">@Model.Name</a></h3>
+        <p>@Model.Description</p>
+        <div class="price-line">
+            <strong>@Model.Price.ToString("N0")₫</strong>
+            @if (Model.OldPrice.HasValue)
+            {
+                <del>@Model.OldPrice.Value.ToString("N0")₫</del>
+            }
+        </div>
+        <div class="sold-line"><span style="width:@Math.Min(Model.Sold / 4, 100)%"></span><small>Đã bán @Model.Sold</small></div>
+    </div>
+</article>

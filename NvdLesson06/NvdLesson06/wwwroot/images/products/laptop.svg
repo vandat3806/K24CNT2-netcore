@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title">
+  <title id="title">Laptop</title>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4fcab0"/><stop offset="1" stop-color="#1d5570"/></linearGradient><linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffbd59"/><stop offset="1" stop-color="#ff7058"/></linearGradient></defs>
+  <rect width="800" height="600" rx="46" fill="url(#bg)"/>
+  <circle cx="675" cy="100" r="150" fill="#fff" opacity=".08"/>
+  <g transform="translate(130 105)"><rect x="70" width="400" height="300" rx="24" fill="#172238"/><rect x="88" y="18" width="364" height="262" rx="12" fill="url(#screen)"/><path d="M30 305h480l60 80c8 13-1 30-17 30H-13c-16 0-25-17-17-30z" fill="#dfe5ef"/><rect x="194" y="330" width="152" height="35" rx="8" fill="#b8c2d2"/></g>
+</svg>
