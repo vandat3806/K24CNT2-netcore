@@ -1,0 +1,67 @@
+@model NvdLesson08.Models.ViewModels.NvdMemberEditViewModel
+@using NvdLesson08.Models.DataModels
+@{
+    ViewData["Title"] = "Cập nhật thành viên";
+}
+
+<section class="form-page">
+    <div class="container narrow-container">
+        <nav class="breadcrumb-line" aria-label="Điều hướng">
+            <a asp-action="Index">Thành viên</a><span>/</span><a asp-action="Details" asp-route-id="@Model.Id">#@Model.Id.ToString("D3")</a><span>/</span><strong>Cập nhật</strong>
+        </nav>
+        <div class="form-heading">
+            <div><span class="eyebrow dark">EDIT MEMBER</span><h1>Cập nhật hồ sơ</h1><p>Điều chỉnh thông tin thành viên mà không làm thay đổi mật khẩu.</p></div>
+            <span class="form-step">ID · @Model.Id.ToString("D3")</span>
+        </div>
+
+        <form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="panel form-panel" novalidate>
+            <input asp-for="Id" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+            <div class="form-section-title"><span>01</span><div><h2>Thông tin thành viên</h2><p>Các thay đổi được áp dụng sau khi lưu.</p></div></div>
+            <div class="form-grid">
+                <div class="field-group">
+                    <label asp-for="UserName"></label><span class="required">*</span>
+                    <input asp-for="UserName" autocomplete="username" />
+                    <span asp-validation-for="UserName"></span>
+                </div>
+                <div class="field-group">
+                    <label asp-for="Email"></label><span class="required">*</span>
+                    <input asp-for="Email" autocomplete="email" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="field-group full-width">
+                    <label asp-for="FullName"></label><span class="required">*</span>
+                    <input asp-for="FullName" autocomplete="name" />
+                    <span asp-validation-for="FullName"></span>
+                </div>
+                <div class="field-group">
+                    <label asp-for="PhoneNumber"></label><span class="required">*</span>
+                    <input asp-for="PhoneNumber" autocomplete="tel" />
+                    <span asp-validation-for="PhoneNumber"></span>
+                </div>
+                <div class="field-group">
+                    <label asp-for="JoinedDate"></label><span class="required">*</span>
+                    <input asp-for="JoinedDate" />
+                    <span asp-validation-for="JoinedDate"></span>
+                </div>
+                <div class="field-group">
+                    <label asp-for="Role"></label><span class="required">*</span>
+                    <select asp-for="Role" asp-items="Html.GetEnumSelectList<NvdMemberRole>()"></select>
+                    <span asp-validation-for="Role"></span>
+                </div>
+                <div class="field-group switch-group">
+                    <span class="switch-copy"><strong>Trạng thái tài khoản</strong><small>Bật để cho phép tài khoản hoạt động.</small></span>
+                    <label class="switch"><input asp-for="IsActive" /><span></span></label>
+                </div>
+            </div>
+            <div class="form-footer">
+                <a class="btn btn-ghost" asp-action="Details" asp-route-id="@Model.Id">Hủy bỏ</a>
+                <button class="btn btn-primary" type="submit">Lưu thay đổi <span aria-hidden="true">→</span></button>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

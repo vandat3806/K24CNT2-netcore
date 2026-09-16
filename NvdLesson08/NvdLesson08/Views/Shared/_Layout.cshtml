@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Bài tập Lesson08 - Model trong ASP.NET Core MVC của Nguyễn Văn Đạt" />
+    <title>@ViewData["Title"] · NVD MemberHub</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/NvdLesson08.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand brand-lockup" asp-controller="Home" asp-action="Index">
+                    <span class="brand-mark">N</span>
+                    <span>
+                        <strong>MemberHub</strong>
+                        <small>ASP.NET Core MVC</small>
+                    </span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation"
+                        aria-expanded="false" aria-label="Mở trình đơn">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse" id="mainNavigation">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Tổng quan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="NvdMember" asp-action="Index">Thành viên</a>
+                        </li>
+                        <li class="nav-item ms-lg-2">
+                            <a class="btn btn-light btn-sm nav-action" asp-controller="NvdMember" asp-action="Create">
+                                <span aria-hidden="true">＋</span> Thêm mới
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="page-shell">
+        <main role="main">
+            <partial name="_StatusAlert" />
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div>
+                <strong>Nguyễn Văn Đạt</strong>
+                <span>· MSV 2410900021 · K24CNT2</span>
+            </div>
+            <span>Lesson08 · Model trong ASP.NET Core MVC (Part 2)</span>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

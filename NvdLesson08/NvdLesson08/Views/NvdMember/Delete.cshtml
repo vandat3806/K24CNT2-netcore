@@ -1,0 +1,24 @@
+@model NvdLesson08.Models.DataModels.NvdMember
+@{
+    ViewData["Title"] = "Xóa thành viên";
+}
+
+<section class="delete-page">
+    <div class="container delete-container">
+        <div class="panel delete-card">
+            <span class="warning-icon">!</span>
+            <span class="eyebrow dark">CONFIRM DELETE</span>
+            <h1>Xóa hồ sơ thành viên?</h1>
+            <p>Thao tác này sẽ loại <strong>@Model.FullName</strong> khỏi danh sách dữ liệu đang chạy.</p>
+            <div class="delete-member">
+                <span class="avatar">@Model.FullName.Substring(0, 1)</span>
+                <div><strong>@Model.FullName</strong><small>@@@Model.UserName · @Model.Email</small></div>
+            </div>
+            <div class="warning-box"><strong>Lưu ý:</strong> Dữ liệu in-memory không thể hoàn tác trong phiên chạy hiện tại.</div>
+            <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="delete-actions">
+                <a class="btn btn-ghost" asp-action="Details" asp-route-id="@Model.Id">Giữ lại hồ sơ</a>
+                <button type="submit" class="btn btn-danger">Xác nhận xóa</button>
+            </form>
+        </div>
+    </div>
+</section>

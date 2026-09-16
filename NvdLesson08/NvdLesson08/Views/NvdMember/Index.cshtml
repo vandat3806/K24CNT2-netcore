@@ -1,0 +1,152 @@
+@model NvdLesson08.Models.ViewModels.NvdMemberIndexViewModel
+@using NvdLesson08.Models.DataModels
+@{
+    ViewData["Title"] = "Quản lý thành viên";
+    var firstItem = Model.TotalItems == 0 ? 0 : ((Model.Page - 1) * Model.PageSize) + 1;
+    var lastItem = Math.Min(Model.Page * Model.PageSize, Model.TotalItems);
+    var returnUrl = Context.Request.Path + Context.Request.QueryString;
+}
+
+<section class="inner-hero">
+    <div class="container inner-hero-row">
+        <div>
+            <span class="eyebrow">MEMBER DIRECTORY</span>
+            <h1>Quản lý thành viên</h1>
+            <p>Tìm kiếm, phân loại và cập nhật hồ sơ trong một luồng CRUD thống nhất.</p>
+        </div>
+        <a class="btn btn-light btn-lg" asp-action="Create"><span aria-hidden="true">＋</span> Thêm thành viên</a>
+    </div>
+</section>
+
+<div class="container content-lift">
+    <div class="stats-row">
+        <article><span class="stat-icon purple">◎</span><div><small>Kết quả hiện tại</small><strong>@Model.TotalItems</strong></div></article>
+        <article><span class="stat-icon green">✓</span><div><small>Đang hoạt động</small><strong>@Model.ActiveCount</strong></div></article>
+        <article><span class="stat-icon orange">—</span><div><small>Tạm khóa</small><strong>@Model.InactiveCount</strong></div></article>
+    </div>
+
+    <div class="panel filter-panel">
+        <form method="get" asp-action="Index" class="filter-grid">
+            <div class="search-field">
+                <label asp-for="Query">Tìm kiếm</label>
+                <span class="search-symbol" aria-hidden="true">⌕</span>
+                <input asp-for="Query" placeholder="Họ tên, tài khoản hoặc email..." autocomplete="off" />
+            </div>
+            <div>
+                <label asp-for="Role">Vai trò</label>
+                <select asp-for="Role" asp-items="Html.GetEnumSelectList<NvdMemberRole>()">
+                    <option value="">Tất cả vai trò</option>
+                </select>
+            </div>
+            <div>
+                <label asp-for="Status">Trạng thái</label>
+                <select asp-for="Status">
+                    <option value="all">Tất cả trạng thái</option>
+                    <option value="active">Đang hoạt động</option>
+                    <option value="inactive">Tạm khóa</option>
+                </select>
+            </div>
+            <div class="filter-actions">
+                <button class="btn btn-primary" type="submit">Áp dụng</button>
+                <a class="btn btn-ghost" asp-action="Index">Đặt lại</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="panel table-panel">
+        <div class="panel-heading">
+            <div>
+                <h2>Danh sách hồ sơ</h2>
+                <p>Hiển thị @firstItem–@lastItem trong @Model.TotalItems kết quả</p>
+            </div>
+            <span>Trang @Model.Page / @Model.TotalPages</span>
+        </div>
+
+        @if (Model.Members.Count == 0)
+        {
+            <div class="empty-state">
+                <span>⌕</span>
+                <h3>Không tìm thấy thành viên</h3>
+                <p>Hãy thay đổi từ khóa hoặc bộ lọc rồi thử lại.</p>
+                <a class="btn btn-primary" asp-action="Index">Xóa bộ lọc</a>
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="member-table">
+                    <thead>
+                        <tr>
+                            <th>Thành viên</th>
+                            <th>Liên hệ</th>
+                            <th>Vai trò</th>
+                            <th>Trạng thái</th>
+                            <th class="text-end">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var member in Model.Members)
+                    {
+                        <tr>
+                            <td>
+                                <div class="member-cell">
+                                    <span class="avatar">@member.FullName.Substring(0, 1)</span>
+                                    <div><strong>@member.FullName</strong><small>@@@member.UserName · #@member.Id.ToString("D3")</small></div>
+                                </div>
+                            </td>
+                            <td><strong class="table-email">@member.Email</strong><small>@member.PhoneNumber</small></td>
+                            <td><span class="role-badge @RoleClass(member.Role)">@RoleLabel(member.Role)</span></td>
+                            <td>
+                                <form asp-action="ToggleStatus" asp-route-id="@member.Id" method="post" class="inline-form">
+                                    <input type="hidden" name="returnUrl" value="@returnUrl" />
+                                    <button type="submit" class="status-pill @(member.IsActive ? "active" : "inactive")" title="Đổi trạng thái">
+                                        <span></span>@(member.IsActive ? "Hoạt động" : "Tạm khóa")
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <a asp-action="Details" asp-route-id="@member.Id" title="Xem chi tiết">Xem</a>
+                                    <a asp-action="Edit" asp-route-id="@member.Id" title="Chỉnh sửa">Sửa</a>
+                                    <a class="danger-link" asp-action="Delete" asp-route-id="@member.Id" title="Xóa">Xóa</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        @if (Model.TotalPages > 1)
+        {
+            <nav class="pagination-wrap" aria-label="Phân trang danh sách thành viên">
+                <a class="page-button @(Model.Page == 1 ? "disabled" : string.Empty)"
+                   asp-action="Index" asp-route-query="@Model.Query" asp-route-role="@Model.Role" asp-route-status="@Model.Status" asp-route-page="@(Model.Page - 1)">‹</a>
+                @for (var pageNumber = 1; pageNumber <= Model.TotalPages; pageNumber++)
+                {
+                    <a class="page-button @(pageNumber == Model.Page ? "current" : string.Empty)"
+                       asp-action="Index" asp-route-query="@Model.Query" asp-route-role="@Model.Role" asp-route-status="@Model.Status" asp-route-page="@pageNumber">@pageNumber</a>
+                }
+                <a class="page-button @(Model.Page == Model.TotalPages ? "disabled" : string.Empty)"
+                   asp-action="Index" asp-route-query="@Model.Query" asp-route-role="@Model.Role" asp-route-status="@Model.Status" asp-route-page="@(Model.Page + 1)">›</a>
+            </nav>
+        }
+    </div>
+</div>
+
+@functions {
+    private static string RoleLabel(NvdMemberRole role) => role switch
+    {
+        NvdMemberRole.Administrator => "Quản trị viên",
+        NvdMemberRole.Editor => "Biên tập viên",
+        _ => "Thành viên"
+    };
+
+    private static string RoleClass(NvdMemberRole role) => role switch
+    {
+        NvdMemberRole.Administrator => "admin",
+        NvdMemberRole.Editor => "editor",
+        _ => "member"
+    };
+}

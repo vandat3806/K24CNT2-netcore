@@ -1,0 +1,111 @@
+﻿@model NvdLesson08.Models.ViewModels.LessonOverviewViewModel
+@{
+    ViewData["Title"] = "Tổng quan Lesson08";
+}
+
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-copy">
+                <span class="eyebrow">LESSON 08 · MODEL PART 2</span>
+                <h1>Quản lý thành viên<br /><span>đúng luồng MVC.</span></h1>
+                <p>
+                    Bài thực hành hoàn chỉnh các thao tác CRUD, Data Annotation, ViewModel,
+                    tìm kiếm và phân trang trên ASP.NET Core MVC.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary btn-lg" asp-controller="NvdMember" asp-action="Index">Mở danh sách</a>
+                    <a class="btn btn-outline-light btn-lg" asp-controller="NvdMember" asp-action="Create">Thêm thành viên</a>
+                </div>
+                <div class="student-line">
+                    <span class="student-avatar">NĐ</span>
+                    <span><strong>Nguyễn Văn Đạt</strong><small>2410900021 · K24CNT2</small></span>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <div class="dashboard-head">
+                    <div>
+                        <span class="live-dot"></span>
+                        Dữ liệu đang hoạt động
+                    </div>
+                    <span>In-memory</span>
+                </div>
+                <div class="metric-grid">
+                    <article>
+                        <span>Tổng thành viên</span>
+                        <strong>@Model.TotalMembers</strong>
+                        <small>Hồ sơ mẫu</small>
+                    </article>
+                    <article>
+                        <span>Đang hoạt động</span>
+                        <strong>@Model.ActiveMembers</strong>
+                        <small>Được kích hoạt</small>
+                    </article>
+                    <article>
+                        <span>Nhóm vai trò</span>
+                        <strong>@Model.Roles</strong>
+                        <small>Phân quyền dữ liệu</small>
+                    </article>
+                </div>
+                @if (Model.LatestMember is not null)
+                {
+                    <div class="latest-member">
+                        <span class="avatar avatar-coral">@Model.LatestMember.FullName.Substring(0, 1)</span>
+                        <div>
+                            <small>Thành viên cập nhật gần nhất</small>
+                            <strong>@Model.LatestMember.FullName</strong>
+                        </div>
+                        <span class="status-pill active">Hoạt động</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow dark">NỘI DUNG THỰC HÀNH</span>
+                <h2>Từ Model đến một luồng CRUD hoàn chỉnh</h2>
+            </div>
+            <p>Mỗi phần minh họa một trách nhiệm rõ ràng trong kiến trúc MVC.</p>
+        </div>
+        <div class="learning-grid">
+            <article class="learning-card">
+                <span class="card-number">01</span>
+                <h3>Data Model</h3>
+                <p>Định nghĩa dữ liệu thành viên, enum vai trò và trạng thái hoạt động.</p>
+                <code>NvdMember.cs</code>
+            </article>
+            <article class="learning-card featured">
+                <span class="card-number">02</span>
+                <h3>ViewModel & Validation</h3>
+                <p>Tách model nhập liệu và kiểm tra dữ liệu bằng Data Annotation.</p>
+                <code>NvdMemberCreateViewModel.cs</code>
+            </article>
+            <article class="learning-card">
+                <span class="card-number">03</span>
+                <h3>Repository & CRUD</h3>
+                <p>Đóng gói truy xuất dữ liệu, xử lý thêm, xem, sửa, xóa và đổi trạng thái.</p>
+                <code>INvdMemberRepository.cs</code>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="workflow-section">
+    <div class="container workflow-grid">
+        <div>
+            <span class="eyebrow dark">LUỒNG XỬ LÝ</span>
+            <h2>Controller chỉ điều phối,<br />Model giữ đúng vai trò.</h2>
+        </div>
+        <ol class="workflow-list">
+            <li><span>1</span><div><strong>Nhận request</strong><small>Route đưa yêu cầu đến đúng action.</small></div></li>
+            <li><span>2</span><div><strong>Bind & validate</strong><small>ViewModel kiểm tra dữ liệu đầu vào.</small></div></li>
+            <li><span>3</span><div><strong>Cập nhật repository</strong><small>Dữ liệu được xử lý tập trung và an toàn.</small></div></li>
+            <li><span>4</span><div><strong>Redirect & hiển thị</strong><small>Áp dụng Post/Redirect/Get và TempData.</small></div></li>
+        </ol>
+    </div>
+</section>

@@ -1,0 +1,83 @@
+@model NvdLesson08.Models.ViewModels.NvdMemberCreateViewModel
+@using NvdLesson08.Models.DataModels
+@{
+    ViewData["Title"] = "Thêm thành viên";
+}
+
+<section class="form-page">
+    <div class="container narrow-container">
+        <nav class="breadcrumb-line" aria-label="Điều hướng">
+            <a asp-action="Index">Thành viên</a><span>/</span><strong>Thêm mới</strong>
+        </nav>
+        <div class="form-heading">
+            <div><span class="eyebrow dark">CREATE MEMBER</span><h1>Tạo hồ sơ thành viên</h1><p>Điền thông tin bên dưới. Các trường có dấu * là bắt buộc.</p></div>
+            <span class="form-step">01 · Thông tin</span>
+        </div>
+
+        <form asp-action="Create" method="post" class="panel form-panel" novalidate>
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+            <div class="form-section-title"><span>01</span><div><h2>Thông tin tài khoản</h2><p>Dùng để nhận diện và đăng nhập hệ thống.</p></div></div>
+            <div class="form-grid">
+                <div class="field-group">
+                    <label asp-for="UserName"></label><span class="required">*</span>
+                    <input asp-for="UserName" placeholder="Ví dụ: nguyenvandat" autocomplete="username" />
+                    <span asp-validation-for="UserName"></span>
+                </div>
+                <div class="field-group">
+                    <label asp-for="Email"></label><span class="required">*</span>
+                    <input asp-for="Email" placeholder="name@example.com" autocomplete="email" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="field-group">
+                    <label asp-for="Password"></label><span class="required">*</span>
+                    <div class="password-field"><input asp-for="Password" placeholder="Tối thiểu 8 ký tự" autocomplete="new-password" /><button type="button" data-password-toggle aria-label="Hiện mật khẩu">Hiện</button></div>
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div class="field-group">
+                    <label asp-for="ConfirmPassword"></label><span class="required">*</span>
+                    <div class="password-field"><input asp-for="ConfirmPassword" placeholder="Nhập lại mật khẩu" autocomplete="new-password" /><button type="button" data-password-toggle aria-label="Hiện mật khẩu">Hiện</button></div>
+                    <span asp-validation-for="ConfirmPassword"></span>
+                </div>
+            </div>
+
+            <div class="form-divider"></div>
+            <div class="form-section-title"><span>02</span><div><h2>Thông tin hồ sơ</h2><p>Dữ liệu liên hệ và phân loại thành viên.</p></div></div>
+            <div class="form-grid">
+                <div class="field-group full-width">
+                    <label asp-for="FullName"></label><span class="required">*</span>
+                    <input asp-for="FullName" placeholder="Nguyễn Văn Đạt" autocomplete="name" />
+                    <span asp-validation-for="FullName"></span>
+                </div>
+                <div class="field-group">
+                    <label asp-for="PhoneNumber"></label><span class="required">*</span>
+                    <input asp-for="PhoneNumber" placeholder="0987654321" autocomplete="tel" />
+                    <span asp-validation-for="PhoneNumber"></span>
+                </div>
+                <div class="field-group">
+                    <label asp-for="JoinedDate"></label><span class="required">*</span>
+                    <input asp-for="JoinedDate" />
+                    <span asp-validation-for="JoinedDate"></span>
+                </div>
+                <div class="field-group">
+                    <label asp-for="Role"></label><span class="required">*</span>
+                    <select asp-for="Role" asp-items="Html.GetEnumSelectList<NvdMemberRole>()"></select>
+                    <span asp-validation-for="Role"></span>
+                </div>
+                <div class="field-group switch-group">
+                    <span class="switch-copy"><strong>Trạng thái tài khoản</strong><small>Cho phép thành viên hoạt động ngay.</small></span>
+                    <label class="switch"><input asp-for="IsActive" /><span></span></label>
+                </div>
+            </div>
+
+            <div class="form-footer">
+                <a class="btn btn-ghost" asp-action="Index">Hủy bỏ</a>
+                <button class="btn btn-primary" type="submit">Lưu thành viên <span aria-hidden="true">→</span></button>
+            </div>
+        </form>
+        <div class="security-note"><span>◆</span><p><strong>Mật khẩu được bảo vệ.</strong> Ứng dụng chỉ lưu chuỗi băm một chiều và không hiển thị lại mật khẩu.</p></div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

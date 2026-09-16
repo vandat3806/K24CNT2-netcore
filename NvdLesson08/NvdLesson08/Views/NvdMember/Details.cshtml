@@ -1,0 +1,61 @@
+@model NvdLesson08.Models.DataModels.NvdMember
+@using NvdLesson08.Models.DataModels
+@{
+    ViewData["Title"] = "Chi tiết thành viên";
+}
+
+<section class="detail-page">
+    <div class="container narrow-container">
+        <nav class="breadcrumb-line" aria-label="Điều hướng"><a asp-action="Index">Thành viên</a><span>/</span><strong>#@Model.Id.ToString("D3")</strong></nav>
+        <div class="profile-header panel">
+            <div class="profile-main">
+                <span class="avatar profile-avatar">@Model.FullName.Substring(0, 1)</span>
+                <div><span class="eyebrow dark">MEMBER PROFILE · #@Model.Id.ToString("D3")</span><h1>@Model.FullName</h1><p>@@@Model.UserName</p></div>
+            </div>
+            <div class="profile-actions">
+                <span class="status-pill @(Model.IsActive ? "active" : "inactive")"><span></span>@(Model.IsActive ? "Đang hoạt động" : "Tạm khóa")</span>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Chỉnh sửa</a>
+            </div>
+        </div>
+
+        <div class="detail-grid">
+            <article class="panel detail-card">
+                <div class="detail-card-head"><div><span>01</span><h2>Thông tin liên hệ</h2></div><small>Dữ liệu hồ sơ</small></div>
+                <dl class="detail-list">
+                    <div><dt>Email</dt><dd>@Model.Email</dd></div>
+                    <div><dt>Số điện thoại</dt><dd>@Model.PhoneNumber</dd></div>
+                    <div><dt>Tên đăng nhập</dt><dd>@Model.UserName</dd></div>
+                </dl>
+            </article>
+            <article class="panel detail-card">
+                <div class="detail-card-head"><div><span>02</span><h2>Thông tin hệ thống</h2></div><small>Phân loại</small></div>
+                <dl class="detail-list">
+                    <div><dt>Vai trò</dt><dd><span class="role-badge @RoleClass(Model.Role)">@RoleLabel(Model.Role)</span></dd></div>
+                    <div><dt>Ngày tham gia</dt><dd>@Model.JoinedDate.ToString("dd/MM/yyyy")</dd></div>
+                    <div><dt>Ngày tạo hồ sơ</dt><dd>@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</dd></div>
+                </dl>
+            </article>
+        </div>
+
+        <div class="detail-footer">
+            <a class="btn btn-ghost" asp-action="Index">← Quay lại danh sách</a>
+            <div><a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model.Id">Xóa hồ sơ</a></div>
+        </div>
+    </div>
+</section>
+
+@functions {
+    private static string RoleLabel(NvdMemberRole role) => role switch
+    {
+        NvdMemberRole.Administrator => "Quản trị viên",
+        NvdMemberRole.Editor => "Biên tập viên",
+        _ => "Thành viên"
+    };
+
+    private static string RoleClass(NvdMemberRole role) => role switch
+    {
+        NvdMemberRole.Administrator => "admin",
+        NvdMemberRole.Editor => "editor",
+        _ => "member"
+    };
+}

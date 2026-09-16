@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NvdLesson08", "NvdLesson08\NvdLesson08.csproj", "{DF085F0C-D2CE-42E2-8F74-622CF10478E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF085F0C-D2CE-42E2-8F74-622CF10478E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF085F0C-D2CE-42E2-8F74-622CF10478E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF085F0C-D2CE-42E2-8F74-622CF10478E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF085F0C-D2CE-42E2-8F74-622CF10478E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
