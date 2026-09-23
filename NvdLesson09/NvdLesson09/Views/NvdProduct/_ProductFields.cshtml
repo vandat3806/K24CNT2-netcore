@@ -1,0 +1,49 @@
+@model NvdProductFormViewModel
+
+<div class="form-grid">
+    <div class="field-group full-width">
+        <label asp-for="Name"></label><span class="required"> *</span>
+        <input asp-for="Name" placeholder="Ví dụ: Bàn phím cơ NVD Studio" />
+        <span asp-validation-for="Name"></span>
+        <small>Từ 6 đến 150 ký tự.</small>
+    </div>
+
+    <div class="field-group">
+        <label asp-for="Price"></label><span class="required"> *</span>
+        <div class="input-suffix">
+            <input asp-for="Price" inputmode="numeric" placeholder="100000" />
+            <span>VNĐ</span>
+        </div>
+        <span asp-validation-for="Price"></span>
+        <small>Tối thiểu 100.000 đồng.</small>
+    </div>
+
+    <div class="field-group">
+        <label asp-for="SalePrice"></label><span class="required"> *</span>
+        <div class="input-suffix">
+            <input asp-for="SalePrice" inputmode="numeric" placeholder="90000" />
+            <span>VNĐ</span>
+        </div>
+        <span asp-validation-for="SalePrice"></span>
+        <small>Không âm và phải thấp hơn giá gốc ít nhất 10%.</small>
+    </div>
+
+    <div class="field-group full-width">
+        <label asp-for="CategoryId"></label><span class="required"> *</span>
+        <select asp-for="CategoryId">
+            <option value="0">— Chọn danh mục —</option>
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+        <span asp-validation-for="CategoryId"></span>
+    </div>
+
+    <div class="field-group full-width">
+        <label asp-for="Description"></label><span class="required"> *</span>
+        <textarea asp-for="Description" rows="6" maxlength="1500" placeholder="Mô tả ngắn gọn công dụng và đặc điểm sản phẩm..."></textarea>
+        <span asp-validation-for="Description"></span>
+        <small>Tối đa 1.500 ký tự; không chứa các từ bị cấm trong bài thực hành.</small>
+    </div>
+</div>

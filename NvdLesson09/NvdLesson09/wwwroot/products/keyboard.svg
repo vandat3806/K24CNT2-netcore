@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title">
+  <title id="title">Bàn phím cơ NVD Studio</title>
+  <rect width="800" height="520" fill="#eaf3ed"/>
+  <circle cx="690" cy="75" r="115" fill="#cde6d8"/>
+  <rect x="105" y="165" width="590" height="215" rx="36" fill="#123d31"/>
+  <g fill="#f7faf8">
+    <rect x="140" y="200" width="55" height="42" rx="8"/><rect x="210" y="200" width="55" height="42" rx="8"/><rect x="280" y="200" width="55" height="42" rx="8"/><rect x="350" y="200" width="55" height="42" rx="8"/><rect x="420" y="200" width="55" height="42" rx="8"/><rect x="490" y="200" width="55" height="42" rx="8"/><rect x="560" y="200" width="95" height="42" rx="8"/>
+    <rect x="140" y="257" width="72" height="42" rx="8"/><rect x="227" y="257" width="55" height="42" rx="8"/><rect x="297" y="257" width="55" height="42" rx="8"/><rect x="367" y="257" width="55" height="42" rx="8"/><rect x="437" y="257" width="55" height="42" rx="8"/><rect x="507" y="257" width="55" height="42" rx="8"/><rect x="577" y="257" width="78" height="42" rx="8"/>
+    <rect x="140" y="314" width="95" height="32" rx="8"/><rect x="250" y="314" width="330" height="32" rx="8"/><rect x="595" y="314" width="60" height="32" rx="8"/>
+  </g>
+  <rect x="140" y="200" width="55" height="42" rx="8" fill="#f1a83b"/>
+  <text x="400" y="435" text-anchor="middle" fill="#17845e" font-family="system-ui,sans-serif" font-size="24" font-weight="800">NVD STUDIO</text>
+</svg>

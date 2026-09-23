@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title">
+  <title id="title">Bộ thẻ ghi nhớ Clean Code</title>
+  <rect width="800" height="520" fill="#eaf4ef"/>
+  <circle cx="135" cy="100" r="125" fill="#cfe9dc"/>
+  <g transform="rotate(-8 400 260)"><rect x="190" y="95" width="310" height="350" rx="24" fill="#f1a83b"/></g>
+  <g transform="rotate(7 430 260)"><rect x="305" y="78" width="310" height="365" rx="24" fill="#123d31"/><rect x="335" y="108" width="250" height="305" rx="16" fill="#f8fbf9"/>
+    <text x="460" y="180" text-anchor="middle" fill="#17845e" font-family="system-ui,sans-serif" font-size="25" font-weight="900">CLEAN CODE</text>
+    <path d="M375 235h170M375 275h125M375 315h150" stroke="#b9d6c8" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="545" cy="355" r="24" fill="#f1a83b"/><path d="M534 355l8 8 16-19" fill="none" stroke="#123d31" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

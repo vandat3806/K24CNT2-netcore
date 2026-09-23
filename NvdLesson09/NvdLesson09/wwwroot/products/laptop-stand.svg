@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title">
+  <title id="title">Giá đỡ laptop FlexDesk</title>
+  <rect width="800" height="520" fill="#fff4df"/>
+  <circle cx="130" cy="95" r="120" fill="#f7dba8"/>
+  <path d="M242 118h380a25 25 0 0 1 25 25v221H217V143a25 25 0 0 1 25-25z" fill="#123d31"/>
+  <rect x="247" y="148" width="370" height="187" rx="8" fill="#dceee4"/>
+  <path d="M180 364h504l-45 55H222z" fill="#789489"/>
+  <path d="M345 419h110l58 55H287z" fill="#456a5d"/>
+  <circle cx="432" cy="133" r="5" fill="#f1a83b"/>
+  <text x="432" y="245" text-anchor="middle" fill="#17845e" font-family="system-ui,sans-serif" font-size="28" font-weight="800">FLEXDESK</text>
+</svg>

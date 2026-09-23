@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title">
+  <title id="title">Đèn bàn học Aurora Mini</title>
+  <rect width="800" height="520" fill="#fff5db"/>
+  <circle cx="480" cy="175" r="175" fill="#ffe5a5"/>
+  <path d="M330 455h270" stroke="#123d31" stroke-width="32" stroke-linecap="round"/>
+  <path d="M455 436V257l-95-91" fill="none" stroke="#123d31" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M250 126c35-42 102-48 144-13l26 22-147 175-26-22c-42-35-48-102-13-144z" fill="#17845e"/>
+  <path d="M277 181l-74 124 153-68z" fill="#ffd67b" opacity=".65"/>
+  <circle cx="455" cy="255" r="22" fill="#f1a83b"/>
+  <text x="470" y="504" text-anchor="middle" fill="#17845e" font-family="system-ui,sans-serif" font-size="22" font-weight="800">AURORA MINI</text>
+</svg>

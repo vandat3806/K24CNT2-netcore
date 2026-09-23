@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title">
+  <title id="title">Chuột không dây Focus M2</title>
+  <rect width="800" height="520" fill="#f4eefa"/>
+  <circle cx="155" cy="420" r="155" fill="#e8dcf1"/>
+  <path d="M400 70c-112 0-185 91-185 215s73 196 185 196 185-72 185-196S512 70 400 70z" fill="#123d31"/>
+  <path d="M400 70v153" stroke="#85a398" stroke-width="4"/>
+  <rect x="380" y="115" width="40" height="75" rx="20" fill="#f1a83b"/>
+  <path d="M251 300c17 90 73 143 149 143s132-53 149-143" fill="none" stroke="#1f5947" stroke-width="18"/>
+  <text x="400" y="510" text-anchor="middle" fill="#17845e" font-family="system-ui,sans-serif" font-size="23" font-weight="800">FOCUS M2</text>
+</svg>

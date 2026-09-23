@@ -1,0 +1,54 @@
+@model NvdProductCreateViewModel
+@{
+    ViewData["Title"] = "Thêm sản phẩm";
+}
+
+<section class="form-page">
+    <div class="container narrow-container">
+        <div class="breadcrumb-line">
+            <a asp-action="Index">Sản phẩm</a><span>/</span><strong>Thêm mới</strong>
+        </div>
+        <div class="form-heading">
+            <div>
+                <span class="eyebrow dark">CREATE · MODEL VALIDATION</span>
+                <h1>Thêm sản phẩm mới</h1>
+                <p>Điền đầy đủ thông tin; dữ liệu chỉ được lưu khi ModelState hợp lệ.</p>
+            </div>
+            <span class="form-badge">Required fields</span>
+        </div>
+
+        <form asp-action="Create" method="post" enctype="multipart/form-data" class="form-panel panel" novalidate>
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+            <div class="form-section-title">
+                <span>01</span>
+                <div><h2>Thông tin sản phẩm</h2><p>Built-in và custom attributes cùng kiểm tra dữ liệu phía server.</p></div>
+            </div>
+
+            <partial name="_ProductFields" model="Model" />
+
+            <div class="form-divider"></div>
+            <div class="form-section-title">
+                <span>02</span>
+                <div><h2>Ảnh đại diện</h2><p>Chấp nhận JPG, JPEG, PNG, WEBP và dung lượng tối đa 2 MB.</p></div>
+            </div>
+            <div class="upload-zone">
+                <input asp-for="ImageFile" type="file" accept=".jpg,.jpeg,.png,.webp" data-image-input />
+                <div class="upload-preview" data-image-preview>
+                    <span aria-hidden="true">↥</span>
+                    <strong>Chọn ảnh sản phẩm</strong>
+                    <small>Kéo thả hoặc bấm để chọn tệp</small>
+                </div>
+            </div>
+            <span asp-validation-for="ImageFile" class="file-error"></span>
+
+            <div class="form-footer">
+                <a class="btn btn-ghost" asp-action="Index">Hủy</a>
+                <button class="btn btn-primary" type="submit">Lưu sản phẩm</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

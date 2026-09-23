@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title">
+  <title id="title">Bảng kế hoạch Weekly Flow</title>
+  <rect width="800" height="520" fill="#edf3f8"/>
+  <rect x="115" y="85" width="570" height="355" rx="25" fill="#123d31"/>
+  <rect x="142" y="120" width="516" height="290" rx="12" fill="#fbfcfb"/>
+  <rect x="142" y="120" width="516" height="62" rx="12" fill="#17845e"/>
+  <text x="400" y="160" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="25" font-weight="900">WEEKLY FLOW</text>
+  <g stroke="#d3e1da" stroke-width="3"><path d="M216 182v228M290 182v228M364 182v228M438 182v228M512 182v228M586 182v228"/><path d="M142 258h516M142 334h516"/></g>
+  <g fill="#f1a83b"><circle cx="179" cy="220" r="11"/><circle cx="327" cy="296" r="11"/><circle cx="475" cy="371" r="11"/></g>
+  <path d="M142 120h516v62H142z" fill="none"/>
+</svg>

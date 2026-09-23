@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title">
+  <title id="title">Túi phụ kiện Tech Pouch</title>
+  <rect width="800" height="520" fill="#f8eee8"/>
+  <circle cx="670" cy="105" r="135" fill="#f2d9ca"/>
+  <path d="M160 200c0-36 29-65 65-65h350c36 0 65 29 65 65v205H160z" fill="#123d31"/>
+  <path d="M160 240h480v165H160z" fill="#1b5745"/>
+  <path d="M185 260h430v115H185z" fill="#eaf3ee" opacity=".16"/>
+  <path d="M325 135v-18c0-28 22-50 50-50h50c28 0 50 22 50 50v18" fill="none" stroke="#123d31" stroke-width="22"/>
+  <rect x="365" y="222" width="70" height="45" rx="10" fill="#f1a83b"/>
+  <circle cx="400" cy="244" r="7" fill="#123d31"/>
+  <text x="400" y="470" text-anchor="middle" fill="#17845e" font-family="system-ui,sans-serif" font-size="23" font-weight="800">TECH POUCH</text>
+</svg>

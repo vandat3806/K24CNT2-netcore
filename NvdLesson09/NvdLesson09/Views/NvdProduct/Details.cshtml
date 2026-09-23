@@ -1,0 +1,50 @@
+@model NvdProduct
+@{
+    ViewData["Title"] = Model.Name;
+    var discount = (int)Math.Round((1 - (Model.SalePrice / Model.Price)) * 100);
+}
+
+<section class="detail-page">
+    <div class="container narrow-container">
+        <div class="breadcrumb-line">
+            <a asp-action="Index">Sản phẩm</a><span>/</span><strong>Chi tiết #@Model.Id</strong>
+        </div>
+
+        <div class="detail-panel panel">
+            <div class="detail-image">
+                <img src="@Model.Image" alt="Ảnh @Model.Name" />
+                <span>-@discount%</span>
+            </div>
+            <div class="detail-copy">
+                <span class="category-pill">@Model.Category.Name</span>
+                <h1>@Model.Name</h1>
+                <p>@Model.Description</p>
+                <div class="detail-price">
+                    <strong>@Model.SalePrice.ToString("N0") ₫</strong>
+                    <del>@Model.Price.ToString("N0") ₫</del>
+                </div>
+
+                <dl class="detail-meta">
+                    <div><dt>Mã sản phẩm</dt><dd>#NVD-@Model.Id.ToString("D3")</dd></div>
+                    <div><dt>Danh mục</dt><dd>@Model.Category.Name</dd></div>
+                    <div><dt>Ngày tạo</dt><dd>@Model.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy")</dd></div>
+                    <div><dt>Trạng thái</dt><dd><span class="valid-pill">✓ Hợp lệ</span></dd></div>
+                </dl>
+
+                <div class="detail-actions">
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Chỉnh sửa</a>
+                    <a class="btn btn-ghost" asp-action="Index">Quay lại</a>
+                    <a class="btn btn-danger-soft" asp-action="Delete" asp-route-id="@Model.Id">Xóa</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="annotation-note">
+            <span>{ }</span>
+            <div>
+                <strong>Dữ liệu đã qua ModelState</strong>
+                <p>Tên, giá, mức giảm, mô tả, danh mục và ảnh đều tuân thủ các Data Annotation của Lesson09.</p>
+            </div>
+        </div>
+    </div>
+</section>

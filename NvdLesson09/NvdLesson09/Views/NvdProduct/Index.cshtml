@@ -1,0 +1,108 @@
+@model NvdProductIndexViewModel
+@{
+    ViewData["Title"] = "Quản lý sản phẩm";
+}
+
+<section class="catalog-hero">
+    <div class="container catalog-hero-row">
+        <div>
+            <span class="eyebrow">PRODUCT CATALOG · CRUD</span>
+            <h1>Quản lý sản phẩm</h1>
+            <p>Tìm kiếm, lọc và thực hiện đầy đủ các thao tác CRUD với dữ liệu đã được kiểm tra.</p>
+        </div>
+        <a class="btn btn-light" asp-action="Create">＋ Thêm sản phẩm</a>
+    </div>
+</section>
+
+<section class="catalog-content">
+    <div class="container">
+        <div class="catalog-stats">
+            <article><span class="stat-symbol green">P</span><div><small>Tổng sản phẩm</small><strong>@Model.TotalProducts</strong></div></article>
+            <article><span class="stat-symbol amber">%</span><div><small>Đang giảm giá</small><strong>@Model.SaleProductCount</strong></div></article>
+            <article><span class="stat-symbol blue">F</span><div><small>Kết quả lọc</small><strong>@Model.TotalFiltered</strong></div></article>
+        </div>
+
+        <form method="get" asp-action="Index" class="filter-panel panel">
+            <div class="filter-field search-field">
+                <label for="keyword">Tìm kiếm</label>
+                <span aria-hidden="true">⌕</span>
+                <input id="keyword" name="keyword" value="@Model.Keyword" placeholder="Tên hoặc mô tả sản phẩm..." />
+            </div>
+            <div class="filter-field">
+                <label for="categoryId">Danh mục</label>
+                <select id="categoryId" name="categoryId">
+                    <option value="">Tất cả danh mục</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        if (Model.CategoryId == category.Id)
+                        {
+                            <option value="@category.Id" selected>@category.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="filter-actions">
+                <button class="btn btn-primary" type="submit">Áp dụng</button>
+                <a class="btn btn-ghost" asp-action="Index">Đặt lại</a>
+            </div>
+        </form>
+
+        @if (Model.Products.Count > 0)
+        {
+            <div class="product-grid">
+                @foreach (var product in Model.Products)
+                {
+                    var discount = (int)Math.Round((1 - (product.SalePrice / product.Price)) * 100);
+                    <article class="product-card">
+                        <a class="product-image" asp-action="Details" asp-route-id="@product.Id">
+                            <img src="@product.Image" alt="Ảnh @product.Name" />
+                            <span>-@discount%</span>
+                        </a>
+                        <div class="product-body">
+                            <small>@product.Category.Name</small>
+                            <h2><a asp-action="Details" asp-route-id="@product.Id">@product.Name</a></h2>
+                            <p>@product.Description</p>
+                            <div class="price-row">
+                                <strong>@product.SalePrice.ToString("N0") ₫</strong>
+                                <del>@product.Price.ToString("N0") ₫</del>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a asp-action="Details" asp-route-id="@product.Id">Chi tiết</a>
+                            <a asp-action="Edit" asp-route-id="@product.Id">Sửa</a>
+                            <a class="danger-link" asp-action="Delete" asp-route-id="@product.Id">Xóa</a>
+                        </div>
+                    </article>
+                }
+            </div>
+
+            @if (Model.TotalPages > 1)
+            {
+                <nav class="pagination-wrap" aria-label="Phân trang sản phẩm">
+                    <a class="page-button @(Model.CurrentPage == 1 ? "disabled" : null)"
+                       asp-action="Index" asp-route-keyword="@Model.Keyword" asp-route-categoryId="@Model.CategoryId" asp-route-page="@(Model.CurrentPage - 1)" aria-label="Trang trước">‹</a>
+                    @for (var pageNumber = 1; pageNumber <= Model.TotalPages; pageNumber++)
+                    {
+                        <a class="page-button @(pageNumber == Model.CurrentPage ? "current" : null)"
+                           asp-action="Index" asp-route-keyword="@Model.Keyword" asp-route-categoryId="@Model.CategoryId" asp-route-page="@pageNumber">@pageNumber</a>
+                    }
+                    <a class="page-button @(Model.CurrentPage == Model.TotalPages ? "disabled" : null)"
+                       asp-action="Index" asp-route-keyword="@Model.Keyword" asp-route-categoryId="@Model.CategoryId" asp-route-page="@(Model.CurrentPage + 1)" aria-label="Trang sau">›</a>
+                </nav>
+            }
+        }
+        else
+        {
+            <div class="empty-state panel">
+                <span>⌕</span>
+                <h2>Không tìm thấy sản phẩm</h2>
+                <p>Hãy thử từ khóa khác hoặc bỏ bộ lọc danh mục.</p>
+                <a class="btn btn-primary" asp-action="Index">Xem tất cả</a>
+            </div>
+        }
+    </div>
+</section>
