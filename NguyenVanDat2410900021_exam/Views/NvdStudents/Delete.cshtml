@@ -1,0 +1,32 @@
+@model NvdStudent
+@{
+    ViewData["Title"] = "Xóa sinh viên";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card border-danger shadow-sm">
+            <div class="card-header bg-danger text-white p-3">
+                <h2 class="h4 mb-0">Xác nhận xóa</h2>
+            </div>
+            <div class="card-body p-4">
+                <div class="alert alert-warning">Bạn có chắc chắn muốn xóa sinh viên này không?</div>
+                <dl class="row mb-0 detail-list">
+                    <dt class="col-sm-4">Mã sinh viên</dt>
+                    <dd class="col-sm-8">@Model.NvdStudentCode</dd>
+                    <dt class="col-sm-4">Họ và tên</dt>
+                    <dd class="col-sm-8">@Model.NvdName</dd>
+                    <dt class="col-sm-4">Lớp</dt>
+                    <dd class="col-sm-8">@Model.NvdClass</dd>
+                </dl>
+            </div>
+            <div class="card-footer bg-white p-3">
+                <form asp-action="Delete" method="post" class="d-flex gap-2">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
