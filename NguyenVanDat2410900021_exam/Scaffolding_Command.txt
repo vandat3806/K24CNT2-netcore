@@ -1,0 +1,9 @@
+CRUD scaffold cho NvdStudent (ASP.NET Core MVC + EF Core):
+
+dotnet tool install -g dotnet-aspnet-codegenerator
+
+dotnet aspnet-codegenerator controller -name NvdStudentsController -m NvdStudent -dc NvdDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+
+Database: NvdEmployee_2410900021_Db
+Table: dbo.NvdStudent
+Student: Nguyễn Văn Đạt - 2410900021 - K24CNT2
