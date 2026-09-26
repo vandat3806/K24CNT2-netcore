@@ -1,0 +1,76 @@
+@model IEnumerable<NvdStudent>
+@{
+    ViewData["Title"] = "Danh sách sinh viên";
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div>
+        <h2 class="mb-1">Danh sách sinh viên</h2>
+        <p class="text-muted mb-0">Quản lý dữ liệu bảng NvdStudent</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">+ Thêm sinh viên</a>
+</div>
+
+<form asp-action="Index" method="get" class="row g-2 mb-3">
+    <div class="col-md-7 col-lg-5">
+        <input name="searchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Tìm theo mã, họ tên hoặc lớp..." />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-primary">Tìm kiếm</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Làm mới</a>
+    </div>
+</form>
+
+<div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.NvdStudentCode)</th>
+                    <th>@Html.DisplayNameFor(model => model.NvdName)</th>
+                    <th>@Html.DisplayNameFor(model => model.NvdGender)</th>
+                    <th>@Html.DisplayNameFor(model => model.NvdBirthDay)</th>
+                    <th>@Html.DisplayNameFor(model => model.NvdClass)</th>
+                    <th>@Html.DisplayNameFor(model => model.NvdActive)</th>
+                    <th class="text-end">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">Chưa có dữ liệu sinh viên.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@item.NvdStudentCode</td>
+                        <td>@item.NvdName</td>
+                        <td>@(item.NvdGender ?? "-")</td>
+                        <td>@(item.NvdBirthDay?.ToString("dd/MM/yyyy") ?? "-")</td>
+                        <td><span class="badge text-bg-secondary">@item.NvdClass</span></td>
+                        <td>
+                            @if (item.NvdActive)
+                            {
+                                <span class="badge text-bg-success">Hoạt động</span>
+                            }
+                            else
+                            {
+                                <span class="badge text-bg-danger">Ngừng</span>
+                            }
+                        </td>
+                        <td class="text-end text-nowrap">
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">Chi tiết</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">Sửa</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
