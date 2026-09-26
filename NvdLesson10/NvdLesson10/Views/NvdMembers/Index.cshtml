@@ -1,0 +1,77 @@
+@model NvdMemberIndexViewModel
+@{
+    ViewData["Title"] = "Dữ liệu thành viên";
+}
+
+<section class="data-hero">
+    <div class="container data-hero-row">
+        <div><span class="eyebrow">DBSET · LINQ · ASYNC</span><h1>Dữ liệu thành viên</h1><p>Danh sách được truy vấn trực tiếp từ bảng <code>dbo.NvdMember</code> qua Entity Framework Core.</p></div>
+        <a class="btn btn-light" asp-action="Create">＋ Thêm bản ghi</a>
+    </div>
+</section>
+
+<section class="data-content">
+    <div class="container">
+        <div class="data-stats">
+            <article><span class="metric-icon cyan">Σ</span><div><small>Tổng bản ghi</small><strong>@Model.TotalMembers</strong></div></article>
+            <article><span class="metric-icon green">✓</span><div><small>Hoạt động</small><strong>@Model.ActiveMembers</strong></div></article>
+            <article><span class="metric-icon orange">F</span><div><small>Kết quả lọc</small><strong>@Model.TotalFiltered</strong></div></article>
+        </div>
+
+        <form method="get" asp-action="Index" class="filter-panel panel">
+            <div class="filter-field search-field"><label for="keyword">Tìm kiếm</label><span>⌕</span><input id="keyword" name="keyword" value="@Model.Keyword" placeholder="Họ tên, username hoặc email..." /></div>
+            <div class="filter-field">
+                <label for="status">Trạng thái</label>
+                <select id="status" name="status">
+                    <option value="">Tất cả trạng thái</option>
+                    @if (Model.Status == "active") { <option value="active" selected>Đang hoạt động</option> } else { <option value="active">Đang hoạt động</option> }
+                    @if (Model.Status == "inactive") { <option value="inactive" selected>Tạm khóa</option> } else { <option value="inactive">Tạm khóa</option> }
+                </select>
+            </div>
+            <div class="filter-actions"><button class="btn btn-primary" type="submit">Truy vấn</button><a class="btn btn-ghost" asp-action="Index">Đặt lại</a></div>
+        </form>
+
+        <div class="table-panel panel">
+            <div class="panel-heading"><div><h2>Kết quả truy vấn</h2><p><code>AsNoTracking()</code> · <code>OrderByDescending()</code> · <code>Skip()</code> · <code>Take()</code></p></div><span>@Model.TotalFiltered hàng</span></div>
+            @if (Model.Members.Count > 0)
+            {
+                <div class="table-responsive">
+                    <table class="member-table">
+                        <thead><tr><th>Thành viên</th><th>Liên hệ</th><th>Ngày tạo</th><th>Trạng thái</th><th></th></tr></thead>
+                        <tbody>
+                        @foreach (var member in Model.Members)
+                        {
+                            <tr>
+                                <td><div class="member-cell"><span class="avatar">@member.NvdFullName.Substring(0, 1).ToUpperInvariant()</span><span><strong>@member.NvdFullName</strong><small>@@@member.NvdUserName · ID @member.Id</small></span></div></td>
+                                <td><strong class="table-email">@member.NvdEmail</strong><small>@(member.NvdPhone ?? "Chưa cập nhật")</small></td>
+                                <td><span>@member.NvdCreatedAt.ToLocalTime().ToString("dd/MM/yyyy")</span><small>@member.NvdCreatedAt.ToLocalTime().ToString("HH:mm")</small></td>
+                                <td>
+                                    <form asp-action="ToggleStatus" asp-route-id="@member.Id" method="post" class="inline-form">
+                                        <button class="status-pill @(member.NvdStatus ? "active" : "inactive")" type="submit" title="Đổi trạng thái"><i></i>@(member.NvdStatus ? "Hoạt động" : "Tạm khóa")</button>
+                                    </form>
+                                </td>
+                                <td><div class="table-actions"><a asp-action="Details" asp-route-id="@member.Id">Xem</a><a asp-action="Edit" asp-route-id="@member.Id">Sửa</a><a class="danger-link" asp-action="Delete" asp-route-id="@member.Id">Xóa</a></div></td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                @if (Model.TotalPages > 1)
+                {
+                    <nav class="pagination-wrap" aria-label="Phân trang">
+                        <a class="page-button @(Model.CurrentPage == 1 ? "disabled" : null)" asp-action="Index" asp-route-keyword="@Model.Keyword" asp-route-status="@Model.Status" asp-route-page="@(Model.CurrentPage - 1)">‹</a>
+                        @for (var pageNumber = 1; pageNumber <= Model.TotalPages; pageNumber++)
+                        {
+                            <a class="page-button @(pageNumber == Model.CurrentPage ? "current" : null)" asp-action="Index" asp-route-keyword="@Model.Keyword" asp-route-status="@Model.Status" asp-route-page="@pageNumber">@pageNumber</a>
+                        }
+                        <a class="page-button @(Model.CurrentPage == Model.TotalPages ? "disabled" : null)" asp-action="Index" asp-route-keyword="@Model.Keyword" asp-route-status="@Model.Status" asp-route-page="@(Model.CurrentPage + 1)">›</a>
+                    </nav>
+                }
+            }
+            else
+            {
+                <div class="empty-state"><span>⌕</span><h3>Không có dữ liệu phù hợp</h3><p>Hãy thử từ khóa khác hoặc bỏ bộ lọc.</p><a class="btn btn-primary" asp-action="Index">Xem tất cả</a></div>
+            }
+        </div>
+    </div>
+</section>

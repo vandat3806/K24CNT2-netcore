@@ -1,0 +1,18 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Có lỗi xảy ra";
+}
+<section class="simple-page">
+    <div class="container narrow-container">
+        <div class="panel error-panel">
+            <span class="error-code">500</span>
+            <h1>Không thể xử lý yêu cầu</h1>
+            <p>Hãy kiểm tra lại kết nối cơ sở dữ liệu và thử lại.</p>
+            @if (Model.ShowRequestId)
+            {
+                <small>Mã yêu cầu: <code>@Model.RequestId</code></small>
+            }
+            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Về trang tổng quan</a>
+        </div>
+    </div>
+</section>

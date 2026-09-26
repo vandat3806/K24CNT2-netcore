@@ -1,0 +1,31 @@
+@model NvdMemberFormViewModel
+
+<div class="form-grid">
+    <div class="field-group">
+        <label asp-for="UserName"></label><span class="required"> *</span>
+        <input asp-for="UserName" placeholder="nguyenvandat" autocomplete="username" />
+        <span asp-validation-for="UserName"></span>
+        <small>4–20 ký tự, không dùng khoảng trắng.</small>
+    </div>
+    <div class="field-group">
+        <label asp-for="FullName"></label><span class="required"> *</span>
+        <input asp-for="FullName" placeholder="Nguyễn Văn Đạt" />
+        <span asp-validation-for="FullName"></span>
+    </div>
+    <div class="field-group">
+        <label asp-for="Email"></label><span class="required"> *</span>
+        <input asp-for="Email" placeholder="email@example.com" autocomplete="email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div class="field-group">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" placeholder="0988000021" inputmode="tel" />
+        <span asp-validation-for="Phone"></span>
+    </div>
+    <div class="field-group full-width">
+        <label class="switch-row">
+            <span><strong>Kích hoạt tài khoản</strong><small>Bản ghi hoạt động được đánh dấu màu xanh trong danh sách.</small></span>
+            <span class="switch"><input asp-for="Status" /><i></i></span>
+        </label>
+    </div>
+</div>

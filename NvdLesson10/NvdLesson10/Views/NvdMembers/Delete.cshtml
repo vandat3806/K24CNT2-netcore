@@ -1,0 +1,15 @@
+@model NvdMember
+@{
+    ViewData["Title"] = "Xóa thành viên";
+}
+
+<section class="delete-page">
+    <div class="container delete-container">
+        <div class="delete-card panel">
+            <span class="delete-symbol">!</span><span class="eyebrow danger">DELETE · CONFIRMATION</span><h1>Xóa bản ghi?</h1>
+            <p>EF Core sẽ phát lệnh DELETE cho bản ghi này. Hành động không thể hoàn tác trong database.</p>
+            <div class="delete-member"><span class="avatar">@Model.NvdFullName.Substring(0, 1).ToUpperInvariant()</span><div><small>@@@Model.NvdUserName · ID @Model.Id</small><strong>@Model.NvdFullName</strong><span>@Model.NvdEmail</span></div></div>
+            <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="delete-actions"><a class="btn btn-ghost" asp-action="Details" asp-route-id="@Model.Id">Không, quay lại</a><button class="btn btn-danger" type="submit">Xác nhận xóa</button></form>
+        </div>
+    </div>
+</section>

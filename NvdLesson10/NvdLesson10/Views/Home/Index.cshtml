@@ -1,0 +1,75 @@
+@model HomeDashboardViewModel
+@{
+    ViewData["Title"] = "Entity Framework Core";
+}
+
+<section class="hero-section">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="eyebrow">LESSON 10 · DATA ACCESS</span>
+            <h1>Từ bảng dữ liệu đến <span>ứng dụng MVC.</span></h1>
+            <p>Thực hành Database First với Entity Framework Core: sinh model từ SQL Server, truy vấn LINQ và hoàn thiện CRUD bất đồng bộ.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary btn-lg" asp-controller="NvdMembers" asp-action="Index">Mở bảng thành viên</a>
+                <a class="btn btn-outline-light btn-lg" asp-controller="NvdMembers" asp-action="Create">Thêm bản ghi mới</a>
+            </div>
+            <div class="student-line"><span>NVD</span><div><strong>Nguyễn Văn Đạt</strong><small>2410900021 · K24CNT2</small></div></div>
+        </div>
+
+        <div class="query-console">
+            <div class="console-head"><div><span></span><span></span><span></span></div><small>Database First flow</small></div>
+            <div class="data-flow">
+                <article><span>01</span><div><strong>SQL Server</strong><small>TvcLesson10EFDb</small></div><b>✓</b></article>
+                <i>↓</i>
+                <article><span>02</span><div><strong>Scaffold-DbContext</strong><small>Models + DbContext</small></div><b>✓</b></article>
+                <i>↓</i>
+                <article class="active"><span>03</span><div><strong>LINQ &amp; CRUD</strong><small>ToListAsync · SaveChangesAsync</small></div><b>LIVE</b></article>
+            </div>
+            <div class="console-foot"><span class="live-dot"></span><strong>@Model.DatabaseProvider provider</strong><small>Đang được cấu hình</small></div>
+        </div>
+    </div>
+</section>
+
+<section class="metrics-section">
+    <div class="container metric-grid">
+        <article><span class="metric-icon cyan">DB</span><div><strong>@Model.TotalMembers</strong><small>Tổng bản ghi</small></div></article>
+        <article><span class="metric-icon green">✓</span><div><strong>@Model.ActiveMembers</strong><small>Đang hoạt động</small></div></article>
+        <article><span class="metric-icon orange">○</span><div><strong>@Model.InactiveMembers</strong><small>Tạm khóa</small></div></article>
+        <article><span class="metric-icon violet">EF</span><div><strong>8.0</strong><small>Entity Framework Core</small></div></article>
+    </div>
+</section>
+
+<section class="concept-section">
+    <div class="container">
+        <div class="section-heading">
+            <div><span class="eyebrow dark">KIẾN THỨC TRỌNG TÂM</span><h2>Luồng làm việc Database First</h2></div>
+            <p>Cơ sở dữ liệu có trước; EF Core đọc schema và sinh các lớp C# để ứng dụng thao tác dữ liệu.</p>
+        </div>
+        <div class="concept-grid">
+            <article class="concept-card featured"><span>01</span><h3>Scaffold model</h3><p>Dùng provider SQL Server để tạo entity và DbContext từ bảng có sẵn.</p><code>Scaffold-DbContext ... -OutputDir Models</code></article>
+            <article class="concept-card"><span>02</span><h3>Dependency Injection</h3><p>Đăng ký DbContext và lấy chuỗi kết nối từ appsettings thay vì ghi cứng trong code.</p><code>AddDbContext&lt;NvdLesson10EfDbContext&gt;()</code></article>
+            <article class="concept-card"><span>03</span><h3>LINQ bất đồng bộ</h3><p>Truy vấn, lọc, phân trang và lưu thay đổi qua API bất đồng bộ của EF Core.</p><code>await query.AsNoTracking().ToListAsync()</code></article>
+        </div>
+    </div>
+</section>
+
+<section class="latest-section">
+    <div class="container latest-layout">
+        <div>
+            <span class="eyebrow dark">DỮ LIỆU THỰC TẾ</span>
+            <h2>Bản ghi mới nhất</h2>
+            <p>Các hàng dưới đây được đọc trực tiếp qua <code>DbSet&lt;NvdMember&gt;</code>.</p>
+            <a class="text-link" asp-controller="NvdMembers" asp-action="Index">Xem toàn bộ dữ liệu →</a>
+        </div>
+        <div class="latest-list">
+            @foreach (var member in Model.LatestMembers)
+            {
+                <a class="latest-row" asp-controller="NvdMembers" asp-action="Details" asp-route-id="@member.Id">
+                    <span class="avatar">@member.NvdFullName.Substring(0, 1).ToUpperInvariant()</span>
+                    <span><strong>@member.NvdFullName</strong><small>@@@member.NvdUserName · @member.NvdEmail</small></span>
+                    <b class="@(member.NvdStatus ? "online" : "offline")">@(member.NvdStatus ? "Hoạt động" : "Tạm khóa")</b>
+                </a>
+            }
+        </div>
+    </div>
+</section>

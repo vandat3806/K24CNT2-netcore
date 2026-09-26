@@ -1,0 +1,10 @@
+@if (TempData["SuccessMessage"] is string successMessage)
+{
+    <div class="container status-container" data-auto-dismiss>
+        <div class="status-alert" role="status">
+            <span class="status-icon">✓</span>
+            <span>@successMessage</span>
+            <button type="button" data-dismiss-alert aria-label="Đóng">×</button>
+        </div>
+    </div>
+}

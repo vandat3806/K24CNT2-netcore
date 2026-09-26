@@ -1,0 +1,26 @@
+@model NvdMemberCreateViewModel
+@{
+    ViewData["Title"] = "Thêm thành viên";
+}
+
+<section class="form-page">
+    <div class="container narrow-container">
+        <div class="breadcrumb-line"><a asp-action="Index">Thành viên</a><span>/</span><strong>Thêm mới</strong></div>
+        <div class="form-heading"><div><span class="eyebrow dark">CREATE · SAVECHANGESASYNC</span><h1>Thêm bản ghi mới</h1><p>Dữ liệu hợp lệ sẽ được EF Core tạo câu lệnh INSERT và lưu xuống database.</p></div><span class="form-badge">INSERT</span></div>
+        <form asp-action="Create" method="post" class="form-panel panel" novalidate>
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+            <div class="form-section-title"><span>01</span><div><h2>Thông tin thành viên</h2><p>Các trường username và email phải duy nhất.</p></div></div>
+            <partial name="_MemberFields" model="Model" />
+            <div class="form-divider"></div>
+            <div class="form-section-title"><span>02</span><div><h2>Bảo mật</h2><p>Mật khẩu được băm bằng PasswordHasher trước khi ghi vào cơ sở dữ liệu.</p></div></div>
+            <div class="field-group full-width">
+                <label asp-for="Password"></label><span class="required"> *</span>
+                <div class="password-field"><input asp-for="Password" autocomplete="new-password" data-password-input /><button type="button" data-toggle-password>Hiện</button></div>
+                <span asp-validation-for="Password"></span><small>Tối thiểu 6 ký tự; giá trị gốc không hiển thị lại.</small>
+            </div>
+            <div class="form-footer"><a class="btn btn-ghost" asp-action="Index">Hủy</a><button class="btn btn-primary" type="submit">Lưu vào database</button></div>
+        </form>
+    </div>
+</section>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
