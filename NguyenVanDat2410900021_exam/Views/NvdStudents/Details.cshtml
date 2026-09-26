@@ -1,0 +1,38 @@
+@model NvdStudent
+@{
+    ViewData["Title"] = "Chi tiết sinh viên";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-info-subtle p-3">
+                <h2 class="h4 mb-0">Chi tiết sinh viên</h2>
+            </div>
+            <div class="card-body p-4">
+                <dl class="row mb-0 detail-list">
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NvdStudentCode)</dt>
+                    <dd class="col-sm-8">@Model.NvdStudentCode</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NvdName)</dt>
+                    <dd class="col-sm-8">@Model.NvdName</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NvdGender)</dt>
+                    <dd class="col-sm-8">@(Model.NvdGender ?? "-")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NvdBirthDay)</dt>
+                    <dd class="col-sm-8">@(Model.NvdBirthDay?.ToString("dd/MM/yyyy") ?? "-")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NvdEmail)</dt>
+                    <dd class="col-sm-8">@(Model.NvdEmail ?? "-")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NvdPhone)</dt>
+                    <dd class="col-sm-8">@(Model.NvdPhone ?? "-")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NvdClass)</dt>
+                    <dd class="col-sm-8">@Model.NvdClass</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NvdActive)</dt>
+                    <dd class="col-sm-8">@(Model.NvdActive ? "Hoạt động" : "Ngừng hoạt động")</dd>
+                </dl>
+            </div>
+            <div class="card-footer bg-white p-3">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a>
+                <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+            </div>
+        </div>
+    </div>
+</div>
