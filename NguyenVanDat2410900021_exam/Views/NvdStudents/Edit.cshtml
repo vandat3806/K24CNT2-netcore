@@ -1,0 +1,74 @@
+@model NvdStudent
+@{
+    ViewData["Title"] = "Sửa sinh viên";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white p-3">
+                <h2 class="h4 mb-0">Sửa sinh viên</h2>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="Id" />
+
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="NvdStudentCode" class="form-label"></label>
+        <input asp-for="NvdStudentCode" class="form-control" />
+        <span asp-validation-for="NvdStudentCode" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="NvdName" class="form-label"></label>
+        <input asp-for="NvdName" class="form-control" />
+        <span asp-validation-for="NvdName" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="NvdGender" class="form-label"></label>
+        <select asp-for="NvdGender" class="form-select">
+            <option value="">-- Chọn giới tính --</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
+        </select>
+        <span asp-validation-for="NvdGender" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="NvdBirthDay" class="form-label"></label>
+        <input asp-for="NvdBirthDay" class="form-control" />
+        <span asp-validation-for="NvdBirthDay" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="NvdEmail" class="form-label"></label>
+        <input asp-for="NvdEmail" class="form-control" />
+        <span asp-validation-for="NvdEmail" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="NvdPhone" class="form-label"></label>
+        <input asp-for="NvdPhone" class="form-control" />
+        <span asp-validation-for="NvdPhone" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="NvdClass" class="form-label"></label>
+        <input asp-for="NvdClass" class="form-control" />
+        <span asp-validation-for="NvdClass" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 d-flex align-items-end">
+        <div class="form-check form-switch mb-2">
+            <input asp-for="NvdActive" class="form-check-input" />
+            <label asp-for="NvdActive" class="form-check-label"></label>
+        </div>
+    </div>
+</div>
+
+                    <div class="mt-4 d-flex gap-2">
+                        <button type="submit" class="btn btn-warning">Cập nhật</button>
+                        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
