@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<div class="hero-card p-4 p-md-5 mb-4 rounded-4 shadow-sm">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <span class="badge text-bg-light text-primary mb-3">ASP.NET Core MVC + SQL Server</span>
+            <h1 class="display-6 fw-bold">Bài thi ASP.NET Core MVC</h1>
+            <p class="lead mb-4">Ứng dụng quản lý sinh viên sử dụng Entity Framework Core, mô hình MVC và CRUD.</p>
+            <div class="d-flex flex-wrap gap-2">
+                <a class="btn btn-light btn-lg" asp-controller="NvdStudents" asp-action="Index">Xem danh sách sinh viên</a>
+                <a class="btn btn-outline-light btn-lg" asp-controller="Home" asp-action="HvtAbout">Thông tin sinh viên</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="student-mini-card">
+                <div class="avatar-circle">NVD</div>
+                <h5 class="mb-1">Nguyễn Văn Đạt</h5>
+                <div>MSV: 2410900021</div>
+                <div>Lớp: K24CNT2</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body"><h5 class="card-title">MVC Template</h5><p class="card-text text-muted">Tách Controller, Model, View rõ ràng theo cấu trúc ASP.NET Core MVC.</p></div></div></div>
+    <div class="col-md-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body"><h5 class="card-title">Entity Framework Core</h5><p class="card-text text-muted">Kết nối SQL Server và thao tác dữ liệu bảng NvdStudent.</p></div></div></div>
+    <div class="col-md-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body"><h5 class="card-title">CRUD đầy đủ</h5><p class="card-text text-muted">Danh sách, thêm, xem chi tiết, sửa và xóa sinh viên.</p></div></div></div>
+</div>
