@@ -1,0 +1,4 @@
+@model NvdCategory
+@{ ViewData["Title"] = "Xóa danh mục"; }
+<div class="page-heading"><div><span class="eyebrow">Xác nhận</span><h1>Xóa danh mục</h1></div></div>
+<section class="delete-card"><h2>@Model.NvdName</h2><p>Danh mục có <strong>@Model.NvdProducts.Count</strong> sản phẩm. Chỉ có thể xóa khi danh mục không còn sản phẩm.</p><form asp-action="Delete" asp-route-id="@Model.NvdCategoryId" method="post" class="button-row"><button class="btn btn-danger" type="submit">Xác nhận xóa</button><a class="btn btn-ghost" asp-action="Index">Hủy</a></form></section>

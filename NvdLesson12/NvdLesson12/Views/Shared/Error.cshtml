@@ -1,0 +1,14 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Lỗi";
+}
+<section class="empty-state">
+    <span class="eyebrow">Có lỗi xảy ra</span>
+    <h1>Ứng dụng chưa thể xử lý yêu cầu</h1>
+    <p>Vui lòng quay lại trang trước và thử lại.</p>
+    @if (Model.ShowRequestId)
+    {
+        <p class="muted">Mã yêu cầu: <code>@Model.RequestId</code></p>
+    }
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Về trang chủ</a>
+</section>

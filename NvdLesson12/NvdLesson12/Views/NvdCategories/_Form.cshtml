@@ -1,0 +1,6 @@
+@model NvdCategory
+<div asp-validation-summary="ModelOnly"></div>
+<div class="form-grid">
+    <div class="form-group full"><label asp-for="NvdName"></label><input asp-for="NvdName" /><span asp-validation-for="NvdName"></span></div>
+    <div class="form-group full checkbox-row"><input asp-for="NvdStatus" /><label asp-for="NvdStatus"></label></div>
+</div>

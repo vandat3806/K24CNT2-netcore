@@ -1,0 +1,65 @@
+@model NvdHomeViewModel
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<section class="intro-strip">
+    <div>
+        <span class="eyebrow">Bài thực hành Lesson12</span>
+        <h1>Thao tác dữ liệu với Entity Framework Core</h1>
+        <p>Code First, quan hệ dữ liệu, CRUD, validation và upload ảnh trong ASP.NET Core MVC.</p>
+    </div>
+    <div class="identity-card">
+        <span>Sinh viên</span>
+        <strong>Nguyễn Văn Đạt</strong>
+        <small>2410900021 · K24CNT2</small>
+    </div>
+</section>
+
+<section class="banner-stack" aria-label="Banner nổi bật">
+    @foreach (var banner in Model.NvdBanners)
+    {
+        <article class="hero-banner">
+            <img src="@banner.NvdImage" alt="@banner.NvdName" />
+            <div class="hero-overlay">
+                <span class="eyebrow">Banner</span>
+                <h2>@banner.NvdName</h2>
+                <p>@banner.NvdDescription</p>
+            </div>
+        </article>
+    }
+</section>
+
+<section class="stats-grid" aria-label="Thống kê dữ liệu">
+    <article><span>Danh mục</span><strong>@Model.NvdCategoryCount</strong></article>
+    <article><span>Sinh viên</span><strong>@Model.NvdStudentCount</strong></article>
+    <article><span>Môn học</span><strong>@Model.NvdSubjectCount</strong></article>
+    <article><span>Bản ghi điểm</span><strong>@Model.NvdMarkCount</strong></article>
+</section>
+
+<section class="section-block">
+    <div class="section-heading">
+        <div><span class="eyebrow">Bài 2</span><h2>Sản phẩm đang hiển thị</h2></div>
+        <a class="btn btn-outline" asp-action="Product">Xem tất cả →</a>
+    </div>
+    <div class="product-grid">
+        @foreach (var product in Model.NvdProducts)
+        {
+            <article class="product-card">
+                <img src="@(product.NvdImage ?? "/images/image-placeholder.svg")" alt="@product.NvdName" />
+                <div class="product-body">
+                    <span class="chip">@product.NvdCategory.NvdName</span>
+                    <h3>@product.NvdName</h3>
+                    <p>@product.NvdDescription</p>
+                    <div class="price-row">
+                        <strong>@product.NvdSalePrice.ToString("N0") ₫</strong>
+                        @if (product.NvdSalePrice < product.NvdPrice)
+                        {
+                            <del>@product.NvdPrice.ToString("N0") ₫</del>
+                        }
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+</section>

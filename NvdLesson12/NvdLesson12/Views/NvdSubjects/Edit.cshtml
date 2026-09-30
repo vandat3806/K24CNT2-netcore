@@ -1,0 +1,3 @@
+@model NvdSubject
+@{ ViewData["Title"] = "Sửa môn học"; }
+<div class="page-heading"><div><span class="eyebrow">Subjects</span><h1>Chỉnh sửa môn học</h1></div></div><form asp-action="Edit" asp-route-id="@Model.NvdSubjectId" method="post" class="form-card"><input type="hidden" asp-for="NvdSubjectId" /><partial name="_Form" model="Model" /><div class="button-row"><button class="btn btn-primary" type="submit">Cập nhật</button><a class="btn btn-ghost" asp-action="Index">Quay lại</a></div></form>

@@ -1,0 +1,15 @@
+@model NvdProductFormViewModel
+<div asp-validation-summary="ModelOnly"></div>
+<div class="form-grid">
+    <div class="form-group full"><label asp-for="NvdName"></label><input asp-for="NvdName" /><span asp-validation-for="NvdName"></span></div>
+    <div class="form-group"><label asp-for="NvdCategoryId"></label><select asp-for="NvdCategoryId" asp-items="Model.NvdCategories"><option value="0">-- Chọn danh mục --</option></select><span asp-validation-for="NvdCategoryId"></span></div>
+    <div class="form-group"><label asp-for="NvdImageFile"></label><input asp-for="NvdImageFile" type="file" accept="image/jpeg,image/png,image/gif,image/webp" /><span asp-validation-for="NvdImageFile"></span><small class="muted">JPG, PNG, GIF hoặc WEBP; tối đa 5 MB.</small></div>
+    @if (!string.IsNullOrWhiteSpace(Model.NvdCurrentImage))
+    {
+        <div class="form-group full"><span class="field-label">Ảnh hiện tại</span><img class="current-image" src="@Model.NvdCurrentImage" alt="Ảnh hiện tại" /></div>
+    }
+    <div class="form-group"><label asp-for="NvdPrice"></label><input asp-for="NvdPrice" type="number" min="0" step="1000" /><span asp-validation-for="NvdPrice"></span></div>
+    <div class="form-group"><label asp-for="NvdSalePrice"></label><input asp-for="NvdSalePrice" type="number" min="0" step="1000" /><span asp-validation-for="NvdSalePrice"></span></div>
+    <div class="form-group full"><label asp-for="NvdDescription"></label><textarea asp-for="NvdDescription"></textarea><span asp-validation-for="NvdDescription"></span></div>
+    <div class="form-group full checkbox-row"><input asp-for="NvdStatus" /><label asp-for="NvdStatus"></label></div>
+</div>

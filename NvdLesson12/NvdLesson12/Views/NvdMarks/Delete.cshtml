@@ -1,0 +1,3 @@
+@model NvdMark
+@{ ViewData["Title"] = "Xóa điểm"; }
+<div class="page-heading"><div><span class="eyebrow">Xác nhận</span><h1>Xóa điểm</h1></div></div><section class="delete-card"><h2>@Model.NvdStudent.NvdStudentName</h2><p>Môn học: <strong>@Model.NvdSubject.NvdSubjectName</strong></p><p>Điểm hiện tại: <strong class="score">@Model.NvdScore.ToString("0.##")</strong></p><form asp-action="Delete" asp-route-studentId="@Model.NvdStudentId" asp-route-subjectId="@Model.NvdSubjectId" method="post" class="button-row"><button class="btn btn-danger" type="submit">Xác nhận xóa</button><a class="btn btn-ghost" asp-action="Index">Hủy</a></form></section>

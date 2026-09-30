@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Entity Framework Core</title><desc id="desc">Banner minh họa Lesson12</desc>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#083c48"/><stop offset="1" stop-color="#0c766e"/></linearGradient><pattern id="p" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M0 48 48 0M24 48 48 24M0 24 24 0" stroke="#fff" stroke-opacity=".08"/></pattern></defs>
+  <rect width="1200" height="520" fill="url(#g)"/><rect width="1200" height="520" fill="url(#p)"/>
+  <g transform="translate(770 85)"><ellipse cx="170" cy="45" rx="150" ry="42" fill="#ffb56b"/><path d="M20 45v245c0 24 67 44 150 44s150-20 150-44V45" fill="#e96b4c"/><ellipse cx="170" cy="126" rx="150" ry="42" fill="#f47e5f"/><ellipse cx="170" cy="208" rx="150" ry="42" fill="#f47e5f"/><ellipse cx="170" cy="290" rx="150" ry="42" fill="#ffc183"/></g>
+  <text x="80" y="185" fill="#7ce3d6" font-family="Arial,sans-serif" font-size="30" font-weight="700" letter-spacing="5">LESSON12</text>
+  <text x="80" y="265" fill="#fff" font-family="Arial,sans-serif" font-size="64" font-weight="800">Entity Framework Core</text>
+  <text x="80" y="325" fill="#d7edef" font-family="Arial,sans-serif" font-size="30">Code First • CRUD • Relationships</text>
+</svg>

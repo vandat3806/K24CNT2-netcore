@@ -1,0 +1,3 @@
+@model NvdBanner
+@{ ViewData["Title"] = "Xóa banner"; }
+<div class="page-heading"><div><span class="eyebrow">Xác nhận</span><h1>Xóa banner</h1></div></div><section class="delete-card media-detail"><img src="@(Model.NvdImage ?? "/images/image-placeholder.svg")" alt="@Model.NvdName" /><div><h2>@Model.NvdName</h2><p>Banner sẽ bị xóa khỏi cơ sở dữ liệu và ảnh upload sẽ bị xóa khỏi máy chủ.</p><form asp-action="Delete" asp-route-id="@Model.NvdBannerId" method="post" class="button-row"><button class="btn btn-danger" type="submit">Xác nhận xóa</button><a class="btn btn-ghost" asp-action="Index">Hủy</a></form></div></section>

@@ -1,0 +1,3 @@
+@model NvdStudentFormViewModel
+@{ ViewData["Title"] = "Thêm sinh viên"; }
+<div class="page-heading"><div><span class="eyebrow">Student</span><h1>Thêm sinh viên</h1></div></div><form asp-action="Create" method="post" enctype="multipart/form-data" class="form-card"><partial name="_Form" model="Model" /><div class="button-row"><button class="btn btn-primary" type="submit">Lưu sinh viên</button><a class="btn btn-ghost" asp-action="Index">Quay lại</a></div></form>

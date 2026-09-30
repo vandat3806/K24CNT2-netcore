@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Lesson12 Entity Framework Core - Nguyễn Văn Đạt - 2410900021" />
+    <title>@ViewData["Title"] - NvdLesson12</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-shell">
+            <a class="brand" asp-controller="Home" asp-action="Index">
+                <span class="brand-mark">NVD</span>
+                <span><strong>Lesson12</strong><small>EF Core · K24CNT2</small></span>
+            </a>
+            <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">☰</button>
+            <nav id="main-nav" class="main-nav" aria-label="Điều hướng chính">
+                <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+                <a asp-controller="Home" asp-action="Product">Sản phẩm</a>
+                <details>
+                    <summary>Quản lý bán hàng</summary>
+                    <div class="nav-menu">
+                        <a asp-controller="NvdCategories" asp-action="Index">Danh mục</a>
+                        <a asp-controller="NvdProducts" asp-action="Index">Sản phẩm</a>
+                        <a asp-controller="NvdBanners" asp-action="Index">Banner</a>
+                    </div>
+                </details>
+                <details>
+                    <summary>StudentManager</summary>
+                    <div class="nav-menu">
+                        <a asp-controller="NvdStdClasses" asp-action="Index">Lớp học</a>
+                        <a asp-controller="NvdStudents" asp-action="Index">Sinh viên</a>
+                        <a asp-controller="NvdSubjects" asp-action="Index">Môn học</a>
+                        <a asp-controller="NvdMarks" asp-action="Index">Bảng điểm</a>
+                    </div>
+                </details>
+                <a asp-controller="Home" asp-action="About">Thông tin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-main">
+        <partial name="_StatusAlert" />
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div><strong>Nguyễn Văn Đạt</strong><span>MSV: 2410900021 · K24CNT2</span></div>
+            <div class="footer-note">Lesson12 · ASP.NET Core MVC · Entity Framework Core Code First</div>
+        </div>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,3 @@
+@model NvdProductFormViewModel
+@{ ViewData["Title"] = "Sửa sản phẩm"; }
+<div class="page-heading"><div><span class="eyebrow">Product #@Model.NvdProductId</span><h1>Chỉnh sửa sản phẩm</h1></div></div><form asp-action="Edit" asp-route-id="@Model.NvdProductId" method="post" enctype="multipart/form-data" class="form-card"><input type="hidden" asp-for="NvdProductId" /><partial name="_Form" model="Model" /><div class="button-row"><button class="btn btn-primary" type="submit">Cập nhật</button><a class="btn btn-ghost" asp-action="Index">Quay lại</a></div></form>

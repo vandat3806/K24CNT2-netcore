@@ -1,0 +1,44 @@
+@model NvdProductCatalogViewModel
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+}
+<div class="page-heading">
+    <div><span class="eyebrow">Bài 2</span><h1>Danh sách sản phẩm</h1><p>Hiển thị dữ liệu sản phẩm theo dạng cột.</p></div>
+</div>
+
+<form method="get" class="filter-bar">
+    <label><span>Tìm kiếm</span><input type="search" name="search" value="@Model.NvdSearch" placeholder="Tên sản phẩm..." /></label>
+    <label><span>Danh mục</span>
+        <select name="categoryId">
+            <option value="">Tất cả danh mục</option>
+            @foreach (var category in Model.NvdCategories)
+            {
+                <option value="@category.NvdCategoryId" selected="@(Model.NvdCategoryId == category.NvdCategoryId)">@category.NvdName</option>
+            }
+        </select>
+    </label>
+    <button class="btn btn-primary" type="submit">Lọc dữ liệu</button>
+    <a class="btn btn-ghost" asp-action="Product">Đặt lại</a>
+</form>
+
+@if (Model.NvdProducts.Count == 0)
+{
+    <div class="empty-state"><h2>Không tìm thấy sản phẩm</h2><p>Hãy thử từ khóa hoặc danh mục khác.</p></div>
+}
+else
+{
+    <div class="product-grid">
+        @foreach (var product in Model.NvdProducts)
+        {
+            <article class="product-card">
+                <img src="@(product.NvdImage ?? "/images/image-placeholder.svg")" alt="@product.NvdName" />
+                <div class="product-body">
+                    <span class="chip">@product.NvdCategory.NvdName</span>
+                    <h2>@product.NvdName</h2>
+                    <p>@product.NvdDescription</p>
+                    <div class="price-row"><strong>@product.NvdSalePrice.ToString("N0") ₫</strong><del>@product.NvdPrice.ToString("N0") ₫</del></div>
+                </div>
+            </article>
+        }
+    </div>
+}
